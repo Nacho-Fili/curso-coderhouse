@@ -1,4 +1,6 @@
-import colors from "../colors"
+import colors           from "../colors"
+import ItemCountContainer   from "./ItemCountContainer"
+
 
 export default function ItemListContainer({greeting}){
 
@@ -9,12 +11,14 @@ export default function ItemListContainer({greeting}){
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: colors.lightFont
+        color: colors.lightFont,
+        flexDirection: 'column'
     }
 
     return(
         <div style={style}>
             { greeting }
+            <ItemCountContainer/>
         </div>
     )
 }

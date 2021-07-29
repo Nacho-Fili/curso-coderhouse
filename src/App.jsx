@@ -7,15 +7,17 @@ import ItemListContainer from './components/ItemListContainer'
 
 
 const App = () => 
-    <Header>
-        <H1> TryH4rd </H1>
-        <NavBar>
-            <MenuOption> Inicio </MenuOption>
-            <MenuOption> Productos </MenuOption>
-            <MenuOption> Mi Cuenta </MenuOption>
-            <CartWidget/>
-        </NavBar>
-        <ItemListContainer greeting='Pronto lanzaremos el producto!'/>
-    </Header>
-
+    <>
+        <Header>
+            <H1> TryH4rd </H1>
+            <NavBar>
+                <MenuOption> Inicio </MenuOption>
+                <MenuOption> Productos </MenuOption>
+                <MenuOption> Mi Cuenta </MenuOption>
+                <CartWidget/>
+            </NavBar>
+        </Header>
+        <ItemListContainer />
+        <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </>
 export default App

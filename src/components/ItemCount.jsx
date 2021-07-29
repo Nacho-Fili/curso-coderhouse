@@ -11,6 +11,7 @@ export default function ItemCount({ initial, stock, onAdd}){
         margin: '40px 0 20px 0',
         width: '-webkit-fill-available',
         height: '50%',
+        maxHeight: 70,
         minHeight: 50,
         display: 'flex',
         alignItems: 'center',

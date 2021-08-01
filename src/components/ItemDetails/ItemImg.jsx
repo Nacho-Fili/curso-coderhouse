@@ -5,7 +5,6 @@ export default function ItemImg({ src, alt }){
             objectFit: 'contain',
             objectPosition: 'center',
             maxHeight: 100,
-            width: '100%'
         },
         div: {
             height: '100%',

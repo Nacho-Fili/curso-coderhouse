@@ -22,12 +22,10 @@ export default function ItemListContainer(){
 
     useEffect(() => {
         const fetchItems = async () => {
-            try{
-                const fetchedItems = await itemsService.fetchAll()
-                setItems(fetchedItems)
-            } catch(err){
-                throw err
-            }
+            itemsService
+                .fetchAll()
+                .then(items => setItems(items))
+                .catch(err => { throw err })
         }
 
         fetchItems()

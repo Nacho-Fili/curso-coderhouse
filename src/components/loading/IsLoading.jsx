@@ -1,5 +1,5 @@
 import colors from "../../colors"
-import loadingCSS from './loadingAnimation.css'
+import './loadingAnimation.css'
 
 
 export default function IsLoading(){

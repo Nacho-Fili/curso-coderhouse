@@ -1,14 +1,17 @@
 import mockItems from '../mock/itemsAPI.js'
+import axios from 'axios'
+
+const ENDPOINT = 'https://fakestoreapi.com'
 
 const itemsService = {
 
-    fetchAll: async id => {
-        try {
-            const items = await mockItems.getAll()
-            return items
-        } catch(err){
-            throw err
-        }
+    fetchAll: async () => {
+        const { data } = await axios.get(`${ENDPOINT}/products/category/electronics`)
+        return data
+    },
+    fetchProduct: async id => {
+        const { data } = axios.get(`${ENDPOINT}/product/${id}`)
+        return data
     }
 }
 

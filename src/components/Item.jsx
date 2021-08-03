@@ -17,9 +17,9 @@ export default function Item({ item }){
 
     return(
         <div style={style}>
-            <ItemImg src={item.pictureURL} alt={item.title}/>
+            <ItemImg src={item.image} alt={item.title}/>
             <ItemTitle title={item.title}/>
-            {`$${item.price}`}
+            {`$${Math.round(item.price*190)}`}
         </div>
     )
 }

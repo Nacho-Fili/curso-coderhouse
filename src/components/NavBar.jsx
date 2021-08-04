@@ -1,6 +1,9 @@
 import colors from "../colors"
+import H1 from "./H1"
+import Header from "./Header"
+import CartWidget from "./CartWidget"
 
-const NavBar = ({ children }) =>{ 
+const NavBar = () =>{ 
     
     const style = {
         display: 'flex',
@@ -13,9 +16,15 @@ const NavBar = ({ children }) =>{
     }
 
     return(
-        <nav style={style}>
-            { children }
-        </nav>
+        <Header>
+            <H1> TryH4rd </H1>
+            <nav style={style}>
+                <p> Inicio </p>
+                <p> Productos </p>
+                <p> Mi Cuenta </p>
+                <CartWidget/>
+            </nav>
+        </Header>
     )
 }
 

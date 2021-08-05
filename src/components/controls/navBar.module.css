@@ -3,5 +3,9 @@
     justify-content: space-around;
     align-items: center;
     font-size: 18;
-    margin-bottom: 15px  
+    margin-bottom: 30px  
+}
+
+.navBar > p {
+    font-size: 1.3rem;
 }

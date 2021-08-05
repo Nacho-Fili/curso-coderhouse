@@ -5,7 +5,7 @@ import colors from "../../colors"
 export default function Item({ item }){
 
     const style = {
-        borderTop: `4px solid ${colors.base}`,
+        border: `4px solid ${colors.base}`,
     }
 
     return(

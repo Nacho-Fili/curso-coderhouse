@@ -10,7 +10,6 @@ const NavBar = () =>{
     const style = {
         color: colors.lightFont,
         borderTop: `10px solid ${ colors.base }`,
-        borderBottom: `3px solid ${colors.base}`,
     }
 
     return(

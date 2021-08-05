@@ -6,7 +6,8 @@ const H1 = ({ children }) =>{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: colors.lightFont
+        color: colors.lightFont,
+        fontSize: '2.5rem'
     }
 
     return(

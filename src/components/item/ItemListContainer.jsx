@@ -29,8 +29,7 @@ export default function ItemListContainer(){
         fetchItems()
     }, [items])
 
-    if(status === 'pending')
-        return <IsLoading />
+    if(status === 'pending') return <IsLoading />
 
     return(
         <div className={styles.itemListContainer} style={style}>

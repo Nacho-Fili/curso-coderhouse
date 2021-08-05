@@ -1,7 +1,7 @@
 import { useState } from "react"
-import colors from "../colors"
-import Button from './Button'
-import AddButton from './AddButton'
+import colors from "../../colors"
+import Button from '../Button'
+import AddButton from '../AddButton'
 
 export default function ItemCount({ initial, stock, onAdd}){
     

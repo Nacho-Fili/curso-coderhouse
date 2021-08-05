@@ -4,9 +4,9 @@ const NavBar = ({ children }) =>{
     
     const style = {
         display: 'flex',
-        flexDirection: 'row',
         alignItems: 'space-around',
         justifyContent: 'space-around',
+        alignItems: 'center',
         fontSize: 18,
         color: colors.lightFont,
         borderTop: `10px solid ${ colors.base }`

@@ -1,5 +1,5 @@
 import Header from './components/Header'
-import NavBar from './components/NavBar'
+import NavBar from './components/controls/NavBar'
 import MenuOption from './components/MenuOption.jsx'
 import H1 from './components/H1'
 import CartWidget from './components/CartWidget'

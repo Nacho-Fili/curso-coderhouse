@@ -9,7 +9,7 @@ const itemsService = {
         return data
     },
     fetchProduct: async id => {
-        const { data } = axios.get(`${ENDPOINT}/product/${id}`)
+        const { data } = await axios.get(`${ENDPOINT}/products/${id}`)
         return data
     }
 }

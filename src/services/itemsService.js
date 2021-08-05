@@ -1,4 +1,3 @@
-import mockItems from '../mock/itemsAPI.js'
 import axios from 'axios'
 
 const ENDPOINT = 'https://fakestoreapi.com'

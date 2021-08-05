@@ -1,21 +1,28 @@
 import colors from "../../colors"
+import H1 from "../H1"
+import Header from "../Header"
+import CartWidget from "../CartWidget"
+import styles from "./navBar.module.css"
 
-const NavBar = ({ children }) =>{ 
+
+const NavBar = () =>{ 
     
     const style = {
-        display: 'flex',
-        alignItems: 'space-around',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        fontSize: 18,
         color: colors.lightFont,
-        borderTop: `10px solid ${ colors.base }`
+        borderTop: `10px solid ${ colors.base }`,
+        borderBottom: `3px solid ${colors.base}`,
     }
 
     return(
-        <nav style={style}>
-            { children }
-        </nav>
+        <Header>
+            <H1> TryH4rd </H1>
+            <nav className={styles.navBar} style={style}>
+                <p> Inicio </p>
+                <p> Productos </p>
+                <p> Mi Cuenta </p>
+                <CartWidget/>
+            </nav>
+        </Header>
     )
 }
 

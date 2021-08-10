@@ -1,7 +1,7 @@
 header {
     display: flex;
     flex-direction: column;
-    
+    height: 25vh;
 }
 
 .navBar{
@@ -14,7 +14,14 @@ header {
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.navBar > a {
+.brand{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+}
+
+header a {
     font-size: 1.15rem;
     text-decoration: none;
     color: white;

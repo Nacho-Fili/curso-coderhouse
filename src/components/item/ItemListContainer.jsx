@@ -17,29 +17,20 @@ export default function ItemListContainer(){
         color: colors.lightFont
     }
 
+    const getFetchFucntion = bool => bool ? itemsService.fetchByCategory : id => itemsService.fetchAll()
+
     useEffect(() => {
         setStatus('pending')
-        const fetchItems = async () => {
-            if(!id) 
-                itemsService
-                    .fetchAll()
-                    .then(items => {
-                        setItems(items)
-                        setStatus('success')
-                    })
-                    .catch(err => { throw err })
-            
-            else itemsService
-                    .fetchByCategory(id)
-                    .then(items => {
-                        setItems(items)
-                        setStatus('succes')
-                    })
-                    .catch(err => { throw err })
-        }
+        const fetchFunction = getFetchFucntion(Boolean(id))
+        
+        fetchFunction(id)
+            .then(items => {
+                setItems(items)
+                setStatus('success')
+            })
+            .catch(err => { throw err })
 
-        fetchItems()
-    }, [id])
+    }, [ id ])
 
     if(status === 'pending') return <IsLoading />
 

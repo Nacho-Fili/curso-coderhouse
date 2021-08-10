@@ -1,7 +1,6 @@
 import { useState } from "react"
 import colors from "../../colors"
-import Button from '../Button'
-import AddButton from '../AddButton'
+import styles from './itemDetails.module.css'
 
 export default function ItemCount({ initial, stock, onAdd}){
     
@@ -27,13 +26,32 @@ export default function ItemCount({ initial, stock, onAdd}){
     const decreaseCounter = () => (counter > 0) && setCounter(counter - 1)
 
     return(
-        <>
+        <div className={styles.countContainer}>
             <div style={style}>
-                <Button onClick={decreaseCounter}>-</Button>
+                <button 
+                    className={'clickable ' + styles.controlButton}
+                    onClick={decreaseCounter}
+                    style={{backgroundColor: colors.background}}> 
+                        - 
+                </button>
                 { counter }
-                <Button onClick={increaseCounter}>+</Button>
+                <button 
+                    className={'clickable ' + styles.controlButton} 
+                    onClick={increaseCounter}
+                    style={{backgroundColor: colors.background}}> 
+                        + 
+                </button>
             </div>
-            <AddButton onClick={() => onAdd(counter)}>Agregar al carrito</AddButton>
-        </>
+            <button 
+                className={styles.addButton} 
+                onClick={() => onAdd(counter)}
+                style={{
+                    color: colors.lightFont,
+                    backgroundColor: "transparent",
+                    border: `2px solid ${colors.base}`
+                }}> 
+                        Add to cart
+            </button>
+        </div>
     )
 }

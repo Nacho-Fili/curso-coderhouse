@@ -1,9 +1,8 @@
 import colors from "../../colors"
-import H1 from "../H1"
 import CartWidget from "../CartWidget"
 import styles from "./navBar.module.css"
 import { Link } from "react-router-dom"
-
+import CategoryListContainer from '../categories/CategoryListContainer'
 
 const NavBar = () =>{ 
     
@@ -14,13 +13,9 @@ const NavBar = () =>{
 
     return(
         <header style={{ backgroundColor: colors.background }}>
-            <H1> TryH4rd </H1>
+            <Link to='/'><h1  style={{color: colors.lightFont}} className={styles.brand}> TryH4rd </h1></Link>
             <nav className={styles.navBar} style={style}>
-                <Link to='/'> Inicio </Link>
-                <Link to='/category/1'> Joyería </Link>
-                <Link to='/category/2'> Electrónica </Link>
-                <Link to='/category/3'> Ropa H </Link>
-                <Link to='/category/4'> Ropa M </Link>
+                <CategoryListContainer/>
                 <CartWidget/>
             </nav>
         </header>

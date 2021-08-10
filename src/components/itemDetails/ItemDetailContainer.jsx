@@ -15,7 +15,6 @@ export default function ItemDetailContainer() {
             .then(fetchedItem => {
                 setItem(fetchedItem)
                 setStatus('success')
-                console.log('trigger')
             })
             .catch(err => {
                 throw err

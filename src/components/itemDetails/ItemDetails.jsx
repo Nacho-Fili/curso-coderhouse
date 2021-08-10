@@ -1,19 +1,24 @@
 import React from 'react'
 import colors from '../../colors'
 import styles from './itemDetails.module.css'
-import ItemCountContainer from './ItemCountContainer'
+import ItemCount from './ItemCount'
 
 export default function ItemDetails({ item }) {
     
-    const style = { backgroundColor: colors.background }
+    const color = { backgroundColor: colors.background }
 
     return (
-        <div style={style} className={styles.mainContainer}>
-            <img src={item.image} alt={item.title} style={{ height: 300 }}/>
-            <div style={{backgroundColor: colors.background, color: colors.lightFont}}>
+        <div style={color} className={styles.mainContainer}>
+            <img src={item.image} alt={item.title}/>
+            <div className={styles.container} style={{...color, color: colors.lightFont}}>
                 <h2>{item.title}</h2>
-                <h3><strong>{`$${Math.round(item.price*190)}`}</strong></h3>
-                <ItemCountContainer/>
+                <h3>
+                    <strong>
+                        {`$${Math.round(item.price*190)}`}
+                    </strong>
+                </h3>
+                <p>{item.description}</p>
+                <ItemCount initial={1} stock={5} onAdd={ quantity => console.log(quantity) }/>
             </div>
         </div>
     )

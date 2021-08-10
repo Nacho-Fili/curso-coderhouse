@@ -17,7 +17,8 @@ export default function Button({ children, onClick }){
         width: 30,
         cursor,
         fontSize: 25,
-        padding: 0
+        padding: 0,
+        outline: 'none'
     })
     
     return(

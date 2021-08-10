@@ -1,11 +1,22 @@
+header {
+    display: flex;
+    flex-direction: column;
+    
+}
+
 .navBar{
     display: flex;
     justify-content: space-around;
     align-items: center;
     font-size: 18;
-    margin-bottom: 30px  
+    margin-bottom: 30px;
+    border-bottom: 3px solid rgba(218, 0, 55, 1);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.navBar > p {
-    font-size: 1.3rem;
+.navBar > a {
+    font-size: 1.15rem;
+    text-decoration: none;
+    color: white;
 }
+

@@ -1,4 +1,5 @@
 import { useEffect, useState }  from 'react'
+import { useParams } from 'react-router-dom'
 import colors                   from '../../colors'
 import itemsService             from '../../services/itemsService'
 import IsLoading                from '../loading/IsLoading'
@@ -9,6 +10,7 @@ export default function ItemListContainer(){
 
     const [items, setItems] = useState([])
     const [ status, setStatus ] = useState('pending')
+    const { id } = useParams()
 
     const style = {
         backgroundColor: colors.background,
@@ -16,18 +18,28 @@ export default function ItemListContainer(){
     }
 
     useEffect(() => {
+        setStatus('pending')
         const fetchItems = async () => {
-            itemsService
-                .fetchAll()
-                .then(items => {
-                    setItems(items)
-                    setStatus('success')
-                })
-                .catch(err => { throw err })
+            if(!id) 
+                itemsService
+                    .fetchAll()
+                    .then(items => {
+                        setItems(items)
+                        setStatus('success')
+                    })
+                    .catch(err => { throw err })
+            
+            else itemsService
+                    .fetchByCategory(id)
+                    .then(items => {
+                        setItems(items)
+                        setStatus('succes')
+                    })
+                    .catch(err => { throw err })
         }
 
         fetchItems()
-    }, [items])
+    }, [id])
 
     if(status === 'pending') return <IsLoading />
 

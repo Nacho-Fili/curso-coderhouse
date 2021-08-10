@@ -2,15 +2,23 @@ import axios from 'axios'
 
 const ENDPOINT = 'https://fakestoreapi.com'
 
+const CATEGORIES = [ 'jewelery', 'electronics', 'men\'s clothing', 'women\'s clothing']
+
 const itemsService = {
 
-    fetchAll: async () => {
-        const { data } = await axios.get(`${ENDPOINT}/products/category/electronics`)
-        return data
+    fetchAll: () => {
+        return axios.get(`${ENDPOINT}/products`)
+            .then(({ data }) => data)
     },
+
     fetchProduct: async id => {
-        const { data } = await axios.get(`${ENDPOINT}/products/${id}`)
-        return data
+        return axios.get(`${ENDPOINT}/products/${id}`)
+            .then(({ data }) => data)
+    },
+
+    fetchByCategory: id => {
+        return axios.get(`${ENDPOINT}/products/category/${CATEGORIES[id - 1]}`)
+            .then(({ data }) => data)
     }
 }
 

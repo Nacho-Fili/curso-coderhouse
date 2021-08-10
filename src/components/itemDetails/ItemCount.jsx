@@ -9,7 +9,8 @@ export default function ItemCount({ initial, stock, onAdd}){
 
     const style = {
         margin: '40px 0 20px 0',
-        width: '-webkit-fill-available',
+        width: '100%',
+        boxSizing: 'border-box',
         height: '50%',
         maxHeight: 70,
         minHeight: 50,

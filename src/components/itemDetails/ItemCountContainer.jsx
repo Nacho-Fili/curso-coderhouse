@@ -3,7 +3,7 @@ import ItemCount from "./ItemCount";
 export default function ItemCountContainer(){
     
     const style = {
-        width: '30%',
+        width: '100%',
         height: '50%',
         display: 'flex',
         flexDirection: 'column',

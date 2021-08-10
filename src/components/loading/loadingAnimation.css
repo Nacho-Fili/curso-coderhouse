@@ -2,6 +2,8 @@
     -webkit-animation: rotation 1.5s linear infinite;
     -o-animation: rotation 1.5s linear infinite;
     animation: rotation 1.5s linear infinite;
+    background-color: rgba(218, 0, 55, 0.2);
+    border: 3px solid rgba(218, 0, 55, 0.3);
 }
 
 @keyframes rotation {

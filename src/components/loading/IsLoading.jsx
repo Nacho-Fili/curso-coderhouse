@@ -15,11 +15,11 @@ export default function IsLoading(){
 
     const containerStyle = {
         minWidth:'100%', 
-        minHeight: '100vh',
+        height: '75vh',
         display: 'flex',
         backgroundColor: colors.background,
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         paddingTop: 60
     }
 

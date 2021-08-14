@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import colors from '../../colors'
 import styles from './itemDetails.module.css'
 import ItemCount from './ItemCount'
 import { Link } from 'react-router-dom'
+import CartContext from '../../context/CartContext'
 
 export default function ItemDetails({ item }) {
 
     const [showCounter, setShowCounter] = useState(true)
 
+    const { addItem } = useContext(CartContext)
+
     const color = { backgroundColor: colors.background }
+
+    const handleOnAdd = quantity => {
+        setShowCounter(false)
+        addItem(item, quantity)
+    }
 
     return (
         <div style={color} className={styles.mainContainer}>
@@ -21,7 +29,7 @@ export default function ItemDetails({ item }) {
                     </strong>
                 </h3>
                 <p className={styles.description}>{item.description}</p>
-                { showCounter && <ItemCount initial={1} stock={5} onAdd={ quantity => setShowCounter(false) }/> }
+                { showCounter && <ItemCount initial={1} stock={5} onAdd={ handleOnAdd }/> }
                 { !showCounter && 
                     <Link to='/cart'>
                         <button 

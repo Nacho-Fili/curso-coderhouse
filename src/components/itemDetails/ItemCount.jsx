@@ -43,7 +43,7 @@ export default function ItemCount({ initial, stock, onAdd}){
                 </button>
             </div>
             <button 
-                className={styles.addButton} 
+                className={'clickable ' + styles.secondaryButton} 
                 onClick={() => onAdd(counter)}
                 style={{
                     color: colors.lightFont,

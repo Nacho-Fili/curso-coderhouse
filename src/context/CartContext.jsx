@@ -5,10 +5,14 @@ const CartContext = createContext({})
 export function CartContextProvider({ children }) {
 
     const [items, setItems] = useState([])
+    const [finalPrice, setFinalPrice] = useState(0)
+    const [finalQuantity, setFinalQuantity] = useState(0)
 
     const addItem = (item, quantity) => {
         const index = items.findIndex(itemInList => itemInList.item.id === item.id)
-        
+        setFinalPrice(finalPrice + item.price*190*quantity)
+        setFinalQuantity(finalQuantity + quantity)
+
         if(index !== -1){
             const newItems = items
             newItems[index] = { item: newItems[index].item, quantity: newItems[index].quantity+quantity}
@@ -19,9 +23,9 @@ export function CartContextProvider({ children }) {
     }
 
     const removeItem = id => {
-        const index = items.findeIndex(itemInList => itemInList.item.id === id)
+        const index = items.findIndex(itemInList => itemInList.item.id === id)
         
-        if(index !== -1) items.splice(index, 0)
+        if(index !== -1) items.splice(index, 1)
 
         setItems([...items])
     }
@@ -29,7 +33,7 @@ export function CartContextProvider({ children }) {
     const clear = () => setItems([])
 
     return (
-        <CartContext.Provider value={{items, addItem, removeItem, clear}}>
+        <CartContext.Provider value={{items, finalPrice, finalQuantity, addItem, removeItem, clear}}>
             { children }
         </CartContext.Provider>
     )

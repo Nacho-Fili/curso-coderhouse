@@ -25,7 +25,11 @@ export function CartContextProvider({ children }) {
     const removeItem = id => {
         const index = items.findIndex(itemInList => itemInList.item.id === id)
         
-        if(index !== -1) items.splice(index, 1)
+        if(index !== -1) {
+            setFinalPrice(finalPrice - items[index].item.price*items[index].quantity*190)
+            setFinalQuantity(finalQuantity - items[index].quantity)
+            items.splice(index, 1)
+        }
 
         setItems([...items])
     }

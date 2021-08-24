@@ -25,7 +25,7 @@ export default function ItemDetails({ item }) {
                 <h2>{item.title}</h2>
                 <h3>
                     <strong>
-                        {`$${Math.round(item.price*190)}`}
+                        {`US$${item.price}`}
                     </strong>
                 </h3>
                 <p className={styles.description}>{item.description}</p>

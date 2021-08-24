@@ -1,30 +1,31 @@
-import axios from 'axios'
+import { firestore } from "../config/firebase"
 
-const ENDPOINT = 'https://fakestoreapi.com'
-
-const CATEGORIES = [ 'jewelery', 'electronics', 'men\'s clothing', 'women\'s clothing']
+const joinIdAndData = doc => ({id: doc.id, ...doc.data()})
+const mappingIdAndData = ({ docs }) => docs.map(joinIdAndData)
 
 const itemsService = {
 
-    fetchAll: () => {
-        return axios.get(`${ENDPOINT}/products`)
-                    .then(({ data }) => data)
-    },
+    fetchAll: () => 
+        firestore.collection("/items").get()
+            .then(mappingIdAndData)
+            .catch(err => console.error(err)),
+    
+    fetchProduct: id => 
+        firestore.doc(`/items/${id}`).get()
+            .then(joinIdAndData)
+            .catch(err => console.error(err)),
 
-    fetchProduct: async id => {
-        return axios.get(`${ENDPOINT}/products/${id}`)
-                    .then(({ data }) => data)
-    },
+    fetchByCategory: id =>
+        firestore.collection("/items").where("categoryId", "==", id).get()
+            .then(mappingIdAndData)
+            .catch(err => console.error(err))
+    ,
+    
 
-    fetchByCategory: id => {
-        return axios.get(`${ENDPOINT}/products/category/${CATEGORIES[id - 1]}`)
-                    .then(({ data }) => data)
-    },
-
-    fetchCategories: () => {
-        return axios.get(`${ENDPOINT}/products/categories`)
-                    .then(({ data }) => data.map(category =>  ({ id: CATEGORIES.indexOf(category)+1, name: category}) ))
-    }
+    fetchCategories: () => 
+        firestore.collection("/categories").get()
+            .then(mappingIdAndData)
+            .catch(err => console.error(err)),
 }
 
 export default itemsService

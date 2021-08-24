@@ -1,5 +1,5 @@
 import colors from "../../colors"
-import CartWidget from "../CartWidget"
+import CartWidget from "../cart/CartWidget"
 import styles from "./navBar.module.css"
 import { Link } from "react-router-dom"
 import CategoryListContainer from '../categories/CategoryListContainer'

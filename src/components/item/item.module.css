@@ -4,6 +4,7 @@
     justify-content: space-around;
     align-items: flex-start;
     padding-top: 100;
+    min-height: 75vh;
 }
 
 .itemList{

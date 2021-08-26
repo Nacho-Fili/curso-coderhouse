@@ -32,7 +32,11 @@ export function CartContextProvider({ children }) {
         setItems([...items])
     }
 
-    const clear = () => setItems([])
+    const clear = () => {
+        setFinalQuantity(0)
+        setFinalPrice(0)
+        setItems([])
+    }
 
     return (
         <CartContext.Provider value={{items, finalPrice, finalQuantity, addItem, removeItem, clear}}>

@@ -15,7 +15,7 @@ export default function IsLoading(){
 
     const containerStyle = {
         minWidth:'100%', 
-        height: '75vh',
+        height: '100%',
         display: 'flex',
         backgroundColor: colors.background,
         justifyContent: 'center',

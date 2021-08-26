@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import cartContext from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 import styles from './cart.module.css'
@@ -9,7 +9,9 @@ export default function Cart() {
     
     const { items, finalPrice, removeItem } = useContext(cartContext)
 
-    if(items.length === 0)
+    const [successBuy, setSuccessBuy] = useState(false) 
+
+    if(items.length === 0 && !successBuy)
         return(
             <>
                 <p>No hay items en tu carrito!</p>
@@ -56,11 +58,11 @@ export default function Cart() {
                     }}
                 >
                     <strong>
-                        {`US$${finalPrice}`}
+                        {`US$${finalPrice.toFixed(2)}`}
                     </strong>
                 </p>
             </div>
-            <Form/>
+            <Form onSuccessBuy={() => setSuccessBuy(true)}/>
         </div>
     )
 }

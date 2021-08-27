@@ -1,34 +1,32 @@
-import { useState } from "react"
-import salesService from "../services/salesService"
+import {useState} from "react";
+import salesService from "../services/salesService";
 
+export default function useForm(fields) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState("");
 
-export default function useForm(fields){
+  const handleSubmit = (e, transaction, callback) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErr("");
 
-    const [isLoading, setIsLoading] = useState(false)
+    let validFields = 0;
 
-    const handleSubmit = (e, transaction) => {
-        e.preventDefault()
-        
-        setIsLoading(true)
+    // TODO: Validar correctamente
+    fields.forEach((field) => {
+      validFields += field.trim().length ? 1 : 0;
+    });
 
-        let validFields = 0
-
-        fields.forEach(field => validFields += !!(field.trim().length) ? 1 : 0)
-        
-        if(validFields === fields.length) {
-            
-            return salesService.create(transaction)
-                        .then(id => {
-                            setIsLoading(false)
-                            console.log(id)
-                            return id
-                        })
-        }
-        else {
-            setIsLoading(false)
-            return Promise.reject("The fields must contain at least one character")
-        }
+    if (validFields === fields.length) {
+      return salesService.create(transaction).then((id) => {
+        setIsLoading(false);
+        callback(id);
+      });
+    } else {
+      setErr("Fields must contain at least one character");
+      setIsLoading(false);
     }
+  };
 
-    return({handleSubmit, isLoading})
+  return {handleSubmit, isLoading, err};
 }

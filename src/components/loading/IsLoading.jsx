@@ -1,31 +1,29 @@
-import colors from "../../colors"
-import './loadingAnimation.css'
+import colors from "../../colors";
+import "./loadingAnimation.css";
 
+export default function IsLoading() {
+  const style = {
+    height: 100,
+    width: 100,
+    // borderWidth: 15,
+    borderTopStyle: "groove",
+    borderTopColor: colors.base,
+    borderRadius: "100%",
+  };
 
-export default function IsLoading(){
+  const containerStyle = {
+    minWidth: "100%",
+    height: "100%",
+    display: "flex",
+    backgroundColor: colors.background,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 60,
+  };
 
-    const style = {
-        height: 100,
-        width: 100,
-        //borderWidth: 15,
-        borderTopStyle: 'groove',
-        borderTopColor: colors.base,
-        borderRadius: '100%',
-    }
-
-    const containerStyle = {
-        minWidth:'100%', 
-        height: '100%',
-        display: 'flex',
-        backgroundColor: colors.background,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: 60
-    }
-
-    return(
-        <div style={containerStyle}>
-            <div style={style} className='loading'/>
-        </div>
-    )
+  return (
+    <div style={containerStyle}>
+      <div style={style} className="loading" />
+    </div>
+  );
 }

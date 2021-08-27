@@ -1,0 +1,15 @@
+.active{
+    font-weight: lighter;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from{
+        font-weight: 100;
+        text-shadow: 0 0 0;
+    }
+    to{
+        font-weight: 500;
+        text-shadow: 0 0 20px white;
+    }
+}

@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import "./category.css";
 
-export default function Category({ category }){
-    
-    const { name, id } = category
+export default function Category({category}) {
+  const {name, id} = category;
 
-    return(
-        <Link to={`/category/${id}`} >{name.charAt(0).toUpperCase() + name.slice(1)}</Link>
-    )
+  return <NavLink to={`/category/${id}`}>{name.charAt(0).toUpperCase() + name.slice(1)}</NavLink>;
 }

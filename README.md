@@ -1,70 +1,92 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TryH4rd e-commerce
 
-## Available Scripts
+Esta es mi implementación de un e-commerce
+desarrollada en el marco del proyecto final
+del curso de React en coderhouse.
+## Installation
 
-In the project directory, you can run:
+```bash
+  git clone https://github.com/Nacho-Fili/curso-coderhouse
+  cd curso-coderhouse
+  npm i
+```
 
-### `npm start`
+Luego, para ejecutar la app en el puerto 3000:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+  npm start
+```
+## Convenciones
+Para nombrar componentes se utilizó PascalCase, para variables
+camelCase, así como para archivos que no sean componentes y directorios.
+En cuanto a linting, no se han utilizado console.log, se han utilizado 
+comillas dobles cuando no se tratara de un template string y se ha optado
+por usar ; siempre.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Libraries
 
-### `npm test`
+### react-router
+Se nos indicó utilizar esta biblioteca durante el
+desarrollo del curso para resolver el routing en
+el proyecto sin meternos en la implementación de
+las apis web dedicadas a eso. Con esta biblioteca
+podemos manejar el routing con elementos de react
+como son las props o los hooks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### validator
+Esta biblioteca nos permite acceder a funciones de
+validaciones desarrolladas con expresiones regulares
+y debidamente testeadas, obteniendo una funcionalidad
+necesaria, testeada y optimizada, que es altamente integrable
+al proyecto debido a su simpleza a la hora de ser utilizada.
 
-### `npm run build`
+### react-icons
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Con esta biblioteca podemos tener acceso a una gran cantidad de 
+iconos sin necesidad de descargarlos o buscarlos en internet,
+además están integrados como componentes de react. Su funcionalidad
+no es estrictamente necesaria, podría resolverse de otra forma. Sin embargo,
+nos facilita y agiliza el trabajo, ahorrándonos tiempo de desarrollo
+que podemos destinar a aspectos más esenciales relaciones con la funcionalidad.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### firebase
+Implementado firebase en el proyecto podemos tener una base de datos
+sin necesidad de implementar un backend, lo cual para un curso de frontend
+es realmente necesario.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### eslint
+Esta biblioteca se utilizó con el fin de mantener un linting ordenado
+y consistente a lo largo de todo el proyecto.
 
-### `npm run eject`
+## Detalles de implementación
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Services
+En el proyecto se entienden por services toda lógica de consumo de información.
+La idea central detrás de esta decisión es que los archivos en los que se define 
+esta logica estén claramente diferenciados de los componentes. Si los componentes no
+tienen la responsabilidad de conocer la implementación del consumo de datos, en caso de
+ser necesario un cambio (por ejemplo, en lugar de consumir firebase consumir una API), es mucho más mantenible. Solo se deberían modificar los 
+servicios y los componentes se mantendrían inalterados.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Form custom hook
+Hay una carpeta hooks que contiene un único archivo, que es useForm.js.
+Si bien la lógica que contiene este archivo no se repite en más de un componente,
+para simplificar el componente Form se decidió extraer parte del comportamiento en un custom hook.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Containers
+En los casos que se necesite consumir datos de un servicio, se separó la responsabilidad
+en al menos 2 componentes: componente container, que se encarga de la obtención de datos y 
+componente presentacional, que tiene la responsabilidad de presentar los componentes. En el caso del 
+catálogo (ItemListContainer-ItemList-Item), al esquema de componente container y presentacional
+se le sumó el componente lista, que tiene la responsabilidad de iterar los datos que el container le pasa por 
+props.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Cart context
+Para manejar el Cart context se decidió utilizar el patrón custom provider. De esta forma el 
+contexto se abstrae de quienes lo consumen y se vuelve reutilizable. Además, hay un detalle extra
+en la implementación de CartContext: para manejar el precio total del carrito y la cantidad de items totales
+se decidió deliberadamente utilizar 3 estados diferentes: uno para guardar los items, otro para guardar la cantidad
+total de items y un último para guardar el precio total de los items. Si bien esto no era necesario y 
+con la lista se podían obtener estos datos, se prefirió consumir un poco más de memoria y no tener que iterar sobre
+una lista de productos, con las implicaciones que esto puede tener.

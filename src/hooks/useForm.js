@@ -12,9 +12,9 @@ export default function useForm(fields) {
 
     let validFields = 0;
 
-    // TODO: Validar correctamente
     fields.forEach((field) => {
-      validFields += field.trim().length ? 1 : 0;
+      console.log(field.value, ": ", field.validate());
+      validFields += field.validate() ? 1 : 0;
     });
 
     if (validFields === fields.length) {

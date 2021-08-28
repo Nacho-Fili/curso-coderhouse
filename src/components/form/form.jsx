@@ -5,6 +5,8 @@ import useForm from "../../hooks/useForm";
 import styles from "./form.module.css";
 import Loader from "../loading/IsLoading";
 import Input from "./input/Input";
+import isEmail from "validator/lib/isEmail";
+import isMobilePhone from "validator/lib/isMobilePhone";
 
 export default function Form({onSuccessBuy}) {
   const {items, finalPrice, clear} = useContext(CartContext);
@@ -14,7 +16,26 @@ export default function Form({onSuccessBuy}) {
   const [phone, setPhone] = useState("");
   const [id, setId] = useState();
 
-  const {handleSubmit, isLoading, err} = useForm([name, email, phone]);
+  const {handleSubmit, isLoading, err} = useForm([
+    {
+      value: name,
+      validate: function () {
+        return Boolean(this.value.trim().length);
+      },
+    },
+    {
+      value: email,
+      validate: function () {
+        return isEmail(this.value);
+      },
+    },
+    {
+      value: phone,
+      validate: function () {
+        return isMobilePhone(this.value, false, {strictMode: true});
+      },
+    },
+  ]);
 
   const setters = {
     name: setName,

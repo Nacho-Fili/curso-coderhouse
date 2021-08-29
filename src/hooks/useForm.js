@@ -13,7 +13,6 @@ export default function useForm(fields) {
     let validFields = 0;
 
     fields.forEach((field) => {
-      console.log(field.value, ": ", field.validate());
       validFields += field.validate() ? 1 : 0;
     });
 

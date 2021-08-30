@@ -4,14 +4,13 @@ import ItemDetailsContainer from "./components/itemDetails/ItemDetailContainer";
 import Cart from "./components/cart/Cart";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {CartContextProvider} from "./context/CartContext";
-import "./App.css";
-import colors from "./colors";
+import "./App.scss";
 
 const App = () => (
   <BrowserRouter>
     <CartContextProvider>
       <NavBar />
-      <div className="main" style={{backgroundColor: colors.background}}>
+      <div className="main">
         <Switch>
           <Route path="/" component={ItemListContainer} exact />
           <Route path="/category/:id" component={ItemListContainer} exact />

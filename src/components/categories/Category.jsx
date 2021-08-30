@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import "./category.css";
+import "./active.css";
 
 export default function Category({category}) {
   const {name, id} = category;

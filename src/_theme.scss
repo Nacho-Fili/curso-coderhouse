@@ -1,0 +1,7 @@
+$main-color: #000032;
+$detail-color: #DA00FF;
+$background: whitesmoke;
+
+@function main-color-opacity($opacity){
+    @return rgba(0, 0, 50, $opacity);
+}

@@ -1,20 +1,14 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import colors from "../../colors";
 import itemsService from "../../services/itemsService";
 import IsLoading from "../loading/IsLoading";
-import styles from "./item.module.css";
+import styles from "./item.module.scss";
 import ItemList from "./ItemList";
 
 export default function ItemListContainer() {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("pending");
   const {id} = useParams();
-
-  const style = {
-    backgroundColor: colors.background,
-    color: colors.lightFont,
-  };
 
   const getFetchFucntion = (bool) =>
     bool ? itemsService.fetchByCategory : (id) => itemsService.fetchAll();
@@ -36,7 +30,7 @@ export default function ItemListContainer() {
   if (status === "pending") return <IsLoading />;
 
   return (
-    <div className={styles.itemListContainer} style={style}>
+    <div className={styles.itemListContainer}>
       <ItemList items={items} />
     </div>
   );

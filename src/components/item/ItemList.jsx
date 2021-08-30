@@ -1,5 +1,5 @@
 import Item from "./Item";
-import styles from "./item.module.css";
+import styles from "./item.module.scss";
 
 export default function ItemList({items}) {
   return (

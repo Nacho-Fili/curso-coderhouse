@@ -1,28 +1,24 @@
-import colors from "../../colors";
 import CartWidget from "../cart/CartWidget";
-import styles from "./navBar.module.css";
+import styles from "./navBar.module.scss";
 import {Link} from "react-router-dom";
 import CategoryListContainer from "../categories/CategoryListContainer";
+import {AiOutlineUser} from "react-icons/ai";
+import {GiMagnifyingGlass} from "react-icons/gi";
+import Brand from "./Brand";
 
-const NavBar = () => {
-  const style = {
-    color: colors.lightFont,
-    borderTop: `10px solid ${colors.base}`,
-  };
-
-  return (
-    <header style={{backgroundColor: colors.background}}>
-      <Link to="/">
-        <h1 style={{color: colors.lightFont}} className={styles.brand}>
-          TryH4rd
-        </h1>
+const NavBar = () => (
+  <header>
+    <nav className={styles.navBar}>
+      <CategoryListContainer />
+      <Link className={styles.brand} to="/">
+        <Brand />
       </Link>
-      <nav className={styles.navBar} style={style}>
-        <CategoryListContainer />
+      <div className={styles.widgetContainer}>
         <CartWidget />
-      </nav>
-    </header>
-  );
-};
-
+        <AiOutlineUser size={25} style={{margin: "18px 0"}} />
+        <GiMagnifyingGlass size={25} style={{margin: "18px 0"}} />
+      </div>
+    </nav>
+  </header>
+);
 export default NavBar;

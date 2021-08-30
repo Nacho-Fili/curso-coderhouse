@@ -1,8 +1,7 @@
 import {useContext, useState} from "react";
 import cartContext from "../../context/CartContext";
 import {Link} from "react-router-dom";
-import styles from "./cart.module.css";
-import colors from "../../colors";
+import styles from "./cart.module.sass";
 import Form from "../form/form";
 
 export default function Cart() {
@@ -19,11 +18,8 @@ export default function Cart() {
     );
 
   return (
-    <div className={styles.itemsContainer} style={{backgroundColor: colors.background}}>
-      <div
-        className={styles.itemRow}
-        style={{color: colors.lightFont, borderBottom: `2px solid ${colors.base}`}}
-      >
+    <div className={styles.itemsContainer}>
+      <div className={styles.itemRow}>
         <p className={styles.itemTitle}> Title </p>
         <p className={styles.itemQuantity}> Quantity </p>
         <p className={styles.finalPrice}> Total Price</p>
@@ -31,45 +27,19 @@ export default function Cart() {
       </div>
       {items.map(({item, quantity}) => {
         return (
-          <div
-            className={styles.itemRow}
-            style={{
-              color: colors.lightFont,
-              borderBottom: `2px solid ${colors.base}`,
-            }}
-            key={item.id}
-          >
-            <p className={styles.itemTitle} style={{color: colors.lightFont}}>
-              {item.title}
-            </p>
-            <p className={styles.itemQuantity} style={{color: colors.lightFont}}>
-              {quantity}{" "}
-            </p>
-            <p className={styles.finalPrice} style={{color: colors.lightFont}}>
-              {`US$${item.price * quantity}`}{" "}
-            </p>
-            <p
-              className={"clickable " + styles.itemDelete}
-              style={{color: colors.lightFont}}
-              onClick={() => removeItem(item.id)}
-            >
-              {" "}
-              X{" "}
+          <div className={styles.itemRow} key={item.id}>
+            <p className={styles.itemTitle}>{item.title}</p>
+            <p className={styles.itemQuantity}>{quantity} </p>
+            <p className={styles.finalPrice}>{`US$${item.price * quantity}`} </p>
+            <p className={"clickable " + styles.itemDelete} onClick={() => removeItem(item.id)}>
+              X
             </p>
           </div>
         );
       })}
 
-      <div className={styles.itemRow}>
-        <p
-          className={styles.totalPrice}
-          style={{
-            color: colors.lightFont,
-            borderBottom: `2px solid ${colors.base}`,
-            borderLeft: `2px solid ${colors.base}`,
-            borderRight: `2px solid ${colors.base}`,
-          }}
-        >
+      <div className={styles.lastItemRow}>
+        <p className={styles.totalPrice}>
           <strong>{`US$${finalPrice.toFixed(2)}`}</strong>
         </p>
       </div>

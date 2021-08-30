@@ -1,8 +1,7 @@
 import {useContext, useState} from "react";
-import colors from "../../colors";
 import CartContext from "../../context/CartContext";
 import useForm from "../../hooks/useForm";
-import styles from "./form.module.css";
+import styles from "./form.module.scss";
 import Loader from "../loading/IsLoading";
 import Input from "./input/Input";
 import isEmail from "validator/lib/isEmail";
@@ -61,7 +60,7 @@ export default function Form({onSuccessBuy}) {
   if (isLoading) return <Loader />;
 
   return id ? (
-    <p style={{color: colors.lightFont}}>
+    <p>
       Success buy! ID: <strong>{id}</strong>
     </p>
   ) : (
@@ -79,15 +78,7 @@ export default function Form({onSuccessBuy}) {
       <Input name="name" onChange={handleChange} />
       <Input name="phone" onChange={handleChange} />
       <Input type="email" name="email" onChange={handleChange} />
-      <button
-        style={{
-          color: colors.lightFont,
-          borderColor: colors.base,
-        }}
-        className="clickable"
-      >
-        submit
-      </button>
+      <button className="clickable">submit</button>
       {Boolean(err) && err}
     </form>
   );

@@ -1,6 +1,5 @@
 import React, {useContext, useState} from "react";
-import colors from "../../colors";
-import styles from "./itemDetails.module.css";
+import styles from "./itemDetails.module.scss";
 import ItemCount from "./ItemCount";
 import {Link} from "react-router-dom";
 import CartContext from "../../context/CartContext";
@@ -10,17 +9,15 @@ export default function ItemDetails({item}) {
 
   const {addItem} = useContext(CartContext);
 
-  const color = {backgroundColor: colors.background};
-
   const handleOnAdd = (quantity) => {
     setShowCounter(false);
     addItem(item, quantity);
   };
 
   return (
-    <div style={color} className={styles.mainContainer}>
+    <div className={styles.mainContainer}>
       <img src={item.image} alt={item.title} />
-      <div className={styles.container} style={{...color, color: colors.lightFont}}>
+      <div className={styles.container}>
         <h2>{item.title}</h2>
         <h3>
           <strong>{`US$${item.price}`}</strong>
@@ -29,17 +26,7 @@ export default function ItemDetails({item}) {
         {showCounter && <ItemCount initial={1} stock={5} onAdd={handleOnAdd} />}
         {!showCounter && (
           <Link to="/cart">
-            <button
-              className={"clickable " + styles.secondaryButton}
-              style={{
-                color: colors.lightFont,
-                backgroundColor: "transparent",
-                border: `2px solid ${colors.base}`,
-                marginTop: 10,
-              }}
-            >
-              Finalizar compra
-            </button>
+            <button className={"clickable " + styles.secondaryButton}>Finalizar compra</button>
           </Link>
         )}
       </div>

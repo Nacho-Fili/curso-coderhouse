@@ -1,0 +1,57 @@
+@import "../../theme";
+
+header {
+    display: flex;
+    height: 20vh;
+    border-bottom: 3px solid $detail-color;
+    box-sizing: border-box;
+    align-items: center;
+    background-color: $background;
+}
+
+.navBar{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 18;
+    height: 100%;
+    width: 100%;
+}
+
+.brand{
+    grid-column: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brandContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brandContainer{
+    img{
+        object-fit: cover;
+        object-position: center;
+        height: 120px;
+    }
+}
+
+.widgetContainer{
+    grid-column: 3/4;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-self: flex-end;
+    width: 40%;
+    box-sizing: border-box;
+    padding-right: 30px;
+}
+
+header a {
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-weight: bold;
+}

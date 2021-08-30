@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import itemsService from "../../services/itemsService";
 import CategoryList from "./CategoryList";
+import styles from "./category.module.scss";
 
 export default function CategoryListContainer() {
   const [categories, setCategories] = useState([]);
@@ -18,7 +19,9 @@ export default function CategoryListContainer() {
       });
   }, []);
 
-  if (status === "pending") return <p> cargando... </p>;
-
-  return <CategoryList categories={categories} />;
+  return (
+    <div className={styles.categoryListContainer}>
+      {status === "pending" ? <p> cargando... </p> : <CategoryList categories={categories} />}
+    </div>
+  );
 }

@@ -1,0 +1,63 @@
+@import '../../_theme'
+
+.itemsContainer
+    width: 100%
+    min-height: 75vh
+    display: flex
+    flex-direction: column
+    align-items: center
+    background-color: $background
+    padding-top: 50px
+
+
+.itemRow
+    width: 70%
+    box-sizing: border-box
+    display: grid
+    padding: 0 20px
+    grid-template-columns: 40% 1fr 1fr 1fr
+    border-bottom: 2px solid $main-color
+
+.lastItemRow
+    width: 70%
+    box-sizing: border-box
+    display: grid
+    padding: 0 20px
+    grid-template-columns: 40% 1fr 1fr 1fr
+
+.itemTitle
+    grid-column: 1/2
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.itemQuantity
+    grid-column: 2/3
+    justify-content: center
+    display: flex
+    align-items: center
+
+
+.finalPrice
+    grid-column: 3/4
+    justify-content: center
+    display: flex
+    align-items: center
+
+.itemDelete
+    grid-column: 4/5
+    justify-content: center
+    display: flex
+    align-items: center
+
+.totalPrice
+    display: flex
+    justify-content: center
+    grid-column: 3/4
+    margin: 0
+    padding: 16px
+    font-size: 2rem
+    border-bottom: 2px solid $main-color
+    border-left: 2px solid $main-color
+    border-right: 2px solid $main-color

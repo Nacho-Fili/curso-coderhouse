@@ -1,5 +1,6 @@
 import {useState} from "react";
 import styles from "./itemDetails.module.scss";
+import SecondaryButton from "../buttons/secondaryButton/SecondaryButton";
 
 export default function ItemCount({initial, stock, onAdd}) {
   const [counter, setCounter] = useState(initial);
@@ -19,9 +20,7 @@ export default function ItemCount({initial, stock, onAdd}) {
           +
         </button>
       </div>
-      <button className={"clickable " + styles.secondaryButton} onClick={() => onAdd(counter)}>
-        Add to cart
-      </button>
+      <SecondaryButton onClick={() => onAdd(counter)}>Add to cart</SecondaryButton>
     </div>
   );
 }

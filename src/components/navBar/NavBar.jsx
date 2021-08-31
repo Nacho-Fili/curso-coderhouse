@@ -9,12 +9,16 @@ import Brand from "./Brand";
 const NavBar = () => (
   <header>
     <nav className={styles.navBar}>
+      {/* TODO: Cambiar categorías y items en firebase */}
       <CategoryListContainer />
       <Link className={styles.brand} to="/">
         <Brand />
       </Link>
       <div className={styles.widgetContainer}>
         <CartWidget />
+        {/* TODO: Crear los componentes de los widgets */}
+        {/* TODO: Darle funcionalidad a los widgets */}
+        {/* TODO: Implementar usuarios */}
         <AiOutlineUser size={25} style={{margin: "18px 0"}} />
         <GiMagnifyingGlass size={25} style={{margin: "18px 0"}} />
       </div>

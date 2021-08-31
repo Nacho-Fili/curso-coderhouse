@@ -2,6 +2,7 @@ import React, {createContext, useState} from "react";
 
 const CartContext = createContext({});
 
+/* TODO: Implementar control de stock */
 export function CartContextProvider({children}) {
   const [items, setItems] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);

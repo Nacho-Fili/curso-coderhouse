@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import cartContext from "../../context/CartContext";
 import {Link} from "react-router-dom";
-import styles from "./cart.module.sass";
+import styles from "./cart.module.scss";
 import Form from "../form/form";
 
 export default function Cart() {

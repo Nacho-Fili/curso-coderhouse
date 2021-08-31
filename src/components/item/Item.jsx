@@ -1,8 +1,12 @@
 import styles from "./item.module.scss";
 import {Link} from "react-router-dom";
 import PrimaryButton from "../buttons/primaryButton/PrimaryButton";
+import {useContext} from "react";
+import CartContext from "../../context/CartContext";
 
 export default function Item({item}) {
+  const {addItem} = useContext(CartContext);
+
   return (
     <div className={styles.itemContainer}>
       <div className={styles.imgContainer}>
@@ -14,7 +18,9 @@ export default function Item({item}) {
         <Link to={`/item/${item.id}`} className={styles.link + " clickable"}>
           <p>view this product</p>
         </Link>
-        <PrimaryButton className={styles.addButton}>Add to cart</PrimaryButton>
+        <PrimaryButton className={styles.addButton} onClick={() => addItem(item, 1)}>
+          Add to cart
+        </PrimaryButton>
       </div>
     </div>
   );

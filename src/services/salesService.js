@@ -10,14 +10,15 @@ const salesService = {
         .get()
         .then(joinIdAndData)
         .then((storedItem) => {
-          if (storedItem.stock < item.quantity) throw new Error(item.id);
+          if (storedItem.stock < item.quantity) {
+            return Promise.reject(item.id);
+          }
         });
-
-      return firestore
-        .collection("/transactions")
-        .add(transaction)
-        .then(({id}) => id);
     });
+    return firestore
+      .collection("/transactions")
+      .add(transaction)
+      .then(({id}) => id);
   },
 };
 

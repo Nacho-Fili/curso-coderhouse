@@ -6,7 +6,6 @@ export default function useForm(fields) {
   const [err, setErr] = useState("");
 
   const handleSubmit = (e, transaction, callback) => {
-    e.preventDefault();
     setIsLoading(true);
     setErr("");
 
@@ -22,8 +21,10 @@ export default function useForm(fields) {
         callback(id);
       });
     } else {
-      setErr("Fields must contain at least one character");
+      const err = new Error("Fields must contain at least one character");
+      setErr(err);
       setIsLoading(false);
+      return Promise.reject(err);
     }
   };
 

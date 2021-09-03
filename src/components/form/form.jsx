@@ -53,7 +53,7 @@ export default function Form({onSuccessBuy}) {
       phone,
       email,
     },
-    items: items.map(({item}) => ({
+    items: items.map((item) => ({
       id: item.id,
       quantity: item.quantity,
       title: item.title,
@@ -73,6 +73,7 @@ export default function Form({onSuccessBuy}) {
     <form
       className={styles.form}
       onSubmit={(e) => {
+        e.preventDefault();
         const transaction = createTransaction();
         handleSubmit(e, transaction, (id) => {
           onSuccessBuy();

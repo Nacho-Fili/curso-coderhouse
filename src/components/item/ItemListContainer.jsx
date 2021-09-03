@@ -5,6 +5,7 @@ import IsLoading from "../loading/IsLoading";
 import styles from "./item.module.scss";
 import ItemList from "./ItemList";
 
+// TODO: Implementar la posibilidad de error
 export default function ItemListContainer() {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("pending");
@@ -18,8 +19,8 @@ export default function ItemListContainer() {
     const fetchFunction = getFetchFucntion(Boolean(id));
 
     fetchFunction(id)
-      .then((items) => {
-        setItems(items);
+      .then((fetchedItems) => {
+        setItems(fetchedItems);
         setStatus("success");
       })
       .catch((err) => {
@@ -27,7 +28,12 @@ export default function ItemListContainer() {
       });
   }, [id]);
 
-  if (status === "pending") return <IsLoading />;
+  if (status === "pending")
+    return (
+      <div className={styles.loaderContainer}>
+        <IsLoading />
+      </div>
+    );
 
   return (
     <div className={styles.itemListContainer}>

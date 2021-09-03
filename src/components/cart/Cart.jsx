@@ -25,12 +25,12 @@ export default function Cart() {
         <p className={styles.finalPrice}> Total Price</p>
         <p className={styles.itemDelete}> Delete </p>
       </div>
-      {items.map(({item, quantity}) => {
+      {items.map((item) => {
         return (
           <div className={styles.itemRow} key={item.id}>
             <p className={styles.itemTitle}>{item.title}</p>
-            <p className={styles.itemQuantity}>{quantity} </p>
-            <p className={styles.finalPrice}>{`US$${item.price * quantity}`} </p>
+            <p className={styles.itemQuantity}>{item.quantity} </p>
+            <p className={styles.finalPrice}>{`US$${item.price * item.quantity}`} </p>
             <p className={"clickable " + styles.itemDelete} onClick={() => removeItem(item.id)}>
               X
             </p>

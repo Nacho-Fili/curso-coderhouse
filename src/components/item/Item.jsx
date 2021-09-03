@@ -13,6 +13,9 @@ export default function Item({item}) {
         <img className={styles.img} src={item.image} alt={item.title} />
       </div>
       <div className={styles.detailContainer}>
+        <Link className={styles.link} to={`/category/${item.categoryId}`}>
+          <h3 className={`${styles.title} ${styles.category} clickable`}>{item.category.name}</h3>
+        </Link>
         <h3 className={styles.title}>{item.title}</h3>
         <p className={styles.price}>{`US$${item.price}`}</p>
         <Link to={`/item/${item.id}`} className={styles.link + " clickable"}>

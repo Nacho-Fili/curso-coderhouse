@@ -2,11 +2,12 @@
 
 header {
     display: flex;
-    height: 20vh;
+    height: 17vh;
     border-bottom: 3px solid $detail-color;
     box-sizing: border-box;
     align-items: center;
     background-color: $background;
+    width: 100%;
 }
 
 .navBar{

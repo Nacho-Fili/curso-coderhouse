@@ -14,6 +14,7 @@ export default function Form({onSuccessBuy}) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [id, setId] = useState();
+  const [stockError, setStockError] = useState("");
 
   const {handleSubmit, isLoading, err} = useForm([
     {
@@ -52,7 +53,12 @@ export default function Form({onSuccessBuy}) {
       phone,
       email,
     },
-    items: items.map(({item}) => ({id: item.id, title: item.title, price: item.price})),
+    items: items.map(({item}) => ({
+      id: item.id,
+      quantity: item.quantity,
+      title: item.title,
+      price: item.price,
+    })),
     date: new Date(),
     total: finalPrice,
   });
@@ -72,6 +78,9 @@ export default function Form({onSuccessBuy}) {
           onSuccessBuy();
           clear();
           setId(id);
+        }).catch((err) => {
+          const item = transaction.items.find((item) => item.id === err);
+          if (item) setStockError(`Insufficient stock for the item ${item.name}`);
         });
       }}
     >
@@ -80,6 +89,7 @@ export default function Form({onSuccessBuy}) {
       <Input type="email" name="email" onChange={handleChange} />
       <button className="clickable">submit</button>
       {Boolean(err) && err}
+      {Boolean(stockError) && stockError}
     </form>
   );
 }

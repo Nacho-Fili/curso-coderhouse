@@ -23,7 +23,7 @@ export default function ItemDetails({item}) {
           <strong>{`US$${item.price}`}</strong>
         </h3>
         <p className={styles.description}>{item.description}</p>
-        {showCounter && <ItemCount initial={1} stock={5} onAdd={handleOnAdd} />}
+        {showCounter && <ItemCount initial={1} stock={item.stock} onAdd={handleOnAdd} />}
         {!showCounter && (
           <Link to="/cart">
             <button className={"clickable " + styles.secondaryButton}>Finalizar compra</button>

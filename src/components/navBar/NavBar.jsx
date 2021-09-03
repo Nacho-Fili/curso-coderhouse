@@ -2,9 +2,10 @@ import CartWidget from "../cart/CartWidget";
 import styles from "./navBar.module.scss";
 import {Link} from "react-router-dom";
 import CategoryListContainer from "../categories/CategoryListContainer";
-import {AiOutlineUser} from "react-icons/ai";
-import {GiMagnifyingGlass} from "react-icons/gi";
+
 import Brand from "./Brand";
+import UserWidget from "../user/UserWidget";
+import MagnifyingGlassWidget from "../magnifyingGlass/MagnifyingGlassWidget";
 
 const NavBar = () => (
   <header>
@@ -19,8 +20,8 @@ const NavBar = () => (
         {/* TODO: Crear los componentes de los widgets */}
         {/* TODO: Darle funcionalidad a los widgets */}
         {/* TODO: Implementar usuarios */}
-        <AiOutlineUser size={25} style={{margin: "18px 0"}} />
-        <GiMagnifyingGlass size={25} style={{margin: "18px 0"}} />
+        <UserWidget />
+        <MagnifyingGlassWidget />
       </div>
     </nav>
   </header>

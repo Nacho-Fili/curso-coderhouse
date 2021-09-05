@@ -5,6 +5,8 @@ import Cart from "./components/cart/Cart";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {CartContextProvider} from "./context/CartContext";
 import "./App.scss";
+import LoginForm from "./components/user/LoginForm";
+import SignupForm from "./components/user/SignupForm";
 
 const App = () => (
   <BrowserRouter>
@@ -16,6 +18,8 @@ const App = () => (
           <Route path="/category/:id" component={ItemListContainer} exact />
           <Route path="/item/:id" component={ItemDetailsContainer} exact />
           <Route path="/cart" component={Cart} exact />
+          <Route path="/login" component={LoginForm} exact />
+          <Route path="/signup" component={SignupForm} exact />
         </Switch>
       </div>
     </CartContextProvider>

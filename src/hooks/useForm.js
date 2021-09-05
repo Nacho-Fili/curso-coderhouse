@@ -1,11 +1,10 @@
 import {useState} from "react";
-import salesService from "../services/salesService";
 
 export default function useForm(fields) {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
 
-  const handleSubmit = (e, transaction, callback) => {
+  const handleSubmit = (callback) => {
     setIsLoading(true);
     setErr("");
 
@@ -16,15 +15,13 @@ export default function useForm(fields) {
     });
 
     if (validFields === fields.length) {
-      return salesService.create(transaction).then((id) => {
+      callback().then(() => {
         setIsLoading(false);
-        callback(id);
       });
     } else {
       const err = new Error("Fields must contain at least one character");
       setErr(err);
       setIsLoading(false);
-      return Promise.reject(err);
     }
   };
 

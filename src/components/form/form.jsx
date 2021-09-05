@@ -6,6 +6,7 @@ import Loader from "../loading/IsLoading";
 import Input from "./input/Input";
 import isEmail from "validator/lib/isEmail";
 import isMobilePhone from "validator/lib/isMobilePhone";
+import salesService from "../../services/salesService";
 
 export default function Form({onSuccessBuy}) {
   const {items, finalPrice, clear} = useContext(CartContext);
@@ -75,13 +76,19 @@ export default function Form({onSuccessBuy}) {
       onSubmit={(e) => {
         e.preventDefault();
         const transaction = createTransaction();
-        handleSubmit(e, transaction, (id) => {
-          onSuccessBuy();
-          clear();
-          setId(id);
-        }).catch((err) => {
-          const item = transaction.items.find((item) => item.id === err);
-          if (item) setStockError(`Insufficient stock for the item ${item.name}`);
+        handleSubmit(() => {
+          return salesService
+            .create(transaction)
+            .then((id) => {
+              onSuccessBuy();
+              clear();
+              setId(id);
+              return id;
+            })
+            .catch((err) => {
+              const item = transaction.items.find((item) => item.id === err);
+              if (item) setStockError(`Insufficient stock for the item ${item.name}`);
+            });
         });
       }}
     >

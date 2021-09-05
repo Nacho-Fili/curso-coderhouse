@@ -20,7 +20,6 @@ export function CartContextProvider({children}) {
           if (stockExceeded(item.quantity, action.item.quantity, item.stock)) {
             quantityToAdd = item.stock - item.quantity;
             item.quantity = item.stock;
-            console.log(quantityToAdd);
             priceToAdd = quantityToAdd * item.price;
           } else {
             item.quantity = item.quantity + action.item.quantity;

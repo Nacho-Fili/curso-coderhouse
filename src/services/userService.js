@@ -4,8 +4,9 @@ const userService = {
   createUser: (name, password, email, phone) =>
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) =>
-        firestore.collection("users").doc(userCredential.UID).set({
+      .then(({user}) =>
+        firestore.collection("users").add({
+          userId: user.uid,
           phone: phone,
           name: name,
           addresses: [],
@@ -15,6 +16,11 @@ const userService = {
       .catch((err) => {
         throw err;
       }),
+
+  login: (email, password) => auth.signInWithEmailAndPassword(email, password),
+  onUserChange: (callback) => auth.onAuthStateChanged((user) => callback(user)),
+
+  logout: () => auth.signOut(),
 };
 
 export default userService;

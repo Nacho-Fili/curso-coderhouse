@@ -20,12 +20,15 @@ export default function Form({onSuccessBuy}) {
   const {handleSubmit, isLoading, err} = useForm([
     {
       validate: () => Boolean(name.trim().length),
+      errorMessage: "Name must contain at least one char",
     },
     {
       validate: () => isEmail(email),
+      errorMessage: "Invalid email",
     },
     {
       validate: () => isMobilePhone(phone, false, {strictMode: true}),
+      errorMessage: "Invalid mobile phone",
     },
   ]);
 
@@ -67,8 +70,8 @@ export default function Form({onSuccessBuy}) {
       onSubmit={(e) => {
         e.preventDefault();
         const transaction = createTransaction();
-        handleSubmit(() => {
-          return salesService
+        handleSubmit(() =>
+          salesService
             .create(transaction)
             .then((id) => {
               onSuccessBuy();
@@ -79,8 +82,8 @@ export default function Form({onSuccessBuy}) {
             .catch((err) => {
               const item = transaction.items.find((item) => item.id === err);
               if (item) setStockError(`Insufficient stock for the item ${item.name}`);
-            });
-        });
+            }),
+        );
       }}
     >
       <Input name="name" onChange={handleChange} />

@@ -6,6 +6,7 @@ import equals from "validator/lib/equals";
 import isStrongPassword from "validator/lib/isStrongPassword";
 import IsLoading from "../loading/IsLoading";
 import userService from "../../services/userService";
+import {useHistory} from "react-router-dom";
 
 export default function SignupForm() {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ export default function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const history = useHistory();
 
   const {err, isLoading, handleSubmit} = useForm([
     {
@@ -50,7 +52,9 @@ export default function SignupForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit(() => userService.createUser(name, password, email, phone));
+        handleSubmit(() =>
+          userService.createUser(name, password, email, phone).then(() => history.push("/")),
+        );
       }}
     >
       <input onChange={handleChange} type="text" name="name" />

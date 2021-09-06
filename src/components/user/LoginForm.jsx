@@ -1,9 +1,10 @@
 import {Link} from "react-router-dom";
+// import useForm from "../../hooks/useForm";
 
 export default function LoginForm() {
   return (
     <>
-      <form action="">
+      <form>
         <input type="text" name="username" />
         <input type="password" name="password" />
         <button>Login</button>

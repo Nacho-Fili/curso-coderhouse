@@ -19,22 +19,13 @@ export default function Form({onSuccessBuy}) {
 
   const {handleSubmit, isLoading, err} = useForm([
     {
-      value: name,
-      validate: function () {
-        return Boolean(this.value.trim().length);
-      },
+      validate: () => Boolean(name.trim().length),
     },
     {
-      value: email,
-      validate: function () {
-        return isEmail(this.value);
-      },
+      validate: () => isEmail(email),
     },
     {
-      value: phone,
-      validate: function () {
-        return isMobilePhone(this.value, false, {strictMode: true});
-      },
+      validate: () => isMobilePhone(phone, false, {strictMode: true}),
     },
   ]);
 

@@ -7,20 +7,20 @@ export default function useForm(fields) {
   const handleSubmit = (callback) => {
     setIsLoading(true);
     setErr("");
-
-    let validFields = 0;
+    const errors = [];
 
     fields.forEach((field) => {
-      validFields += field.validate() ? 1 : 0;
+      !field.validate() && errors.push(field.errorMessage);
     });
 
-    if (validFields === fields.length) {
-      callback().then(() => {
-        setIsLoading(false);
-      });
+    if (errors.length === 0) {
+      if (callback)
+        callback().then(() => {
+          setIsLoading(false);
+        });
+      else setIsLoading(false);
     } else {
-      const err = new Error("Fields must contain at least one character");
-      setErr(err);
+      setErr(errors);
       setIsLoading(false);
     }
   };

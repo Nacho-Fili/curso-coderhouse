@@ -27,7 +27,7 @@ class Firebase {
   };
 
   static getAuth = function () {
-    if (!this.auth) this.auth = firebase.auth();
+    if (!this.auth) this.auth = firebase.auth(Firebase.getApp());
     return this.auth;
   };
 }

@@ -1,5 +1,5 @@
 import {useContext, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import isEmail from "validator/lib/isEmail";
 import isStrongPassword from "validator/lib/isStrongPassword";
@@ -8,10 +8,12 @@ import UserContext from "../../context/UserContext";
 
 export default function LoginForm() {
   const {login} = useContext(UserContext);
+  const {from} = useParams();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
   const errorMessage = "Email or password incorrect";
+
+  const redirectTo = from || "";
 
   const {err, isLoading, handleSubmit} = useForm(
     [
@@ -22,7 +24,7 @@ export default function LoginForm() {
         errorMessage,
       },
     ],
-    "/",
+    `/${redirectTo}`,
   );
 
   const setters = {

@@ -35,6 +35,8 @@ class UserService {
         }),
     );
 
+  deleteAccount = () => auth.currentUser.delete();
+
   logout = () => auth.signOut();
 }
 

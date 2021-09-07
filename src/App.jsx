@@ -8,6 +8,7 @@ import {UserContextProvider} from "./context/UserContext";
 import "./App.scss";
 import LoginForm from "./components/user/LoginForm";
 import SignupForm from "./components/user/SignupForm";
+import Profile from "./components/user/Profile";
 
 const App = () => (
   <BrowserRouter>
@@ -21,7 +22,9 @@ const App = () => (
             <Route path="/item/:id" component={ItemDetailsContainer} exact />
             <Route path="/cart" component={Cart} exact />
             <Route path="/login" component={LoginForm} exact />
+            <Route path="/login/:from" component={LoginForm} exact />
             <Route path="/signup" component={SignupForm} exact />
+            <Route path="/profile" component={Profile} exact />
           </Switch>
         </div>
       </UserContextProvider>

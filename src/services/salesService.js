@@ -2,8 +2,15 @@ import {firestore} from "../config/firebase";
 
 const joinIdAndData = (doc) => ({id: doc.id, ...doc.data()});
 
-const salesService = {
-  create: (transaction) => {
+class SalesService {
+  instance;
+
+  static getInstance = function () {
+    if (!this.instance) this.instance = new SalesService();
+    return this.instance;
+  };
+
+  create = (transaction) => {
     transaction.items.forEach((item) => {
       firestore
         .doc(`/items/${item.id}`)
@@ -19,7 +26,7 @@ const salesService = {
       .collection("/transactions")
       .add(transaction)
       .then(({id}) => id);
-  },
-};
+  };
+}
 
-export default salesService;
+export default SalesService.getInstance();

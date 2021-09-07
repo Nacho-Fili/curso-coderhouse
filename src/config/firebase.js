@@ -11,7 +11,27 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-const app = firebase.initializeApp(firebaseConfig);
+class Firebase {
+  app;
+  firestore;
+  auth;
 
-export const firestore = firebase.firestore(app);
-export const auth = firebase.auth();
+  static getApp = function () {
+    if (!this.app) this.app = firebase.initializeApp(firebaseConfig);
+    return this.app;
+  };
+
+  static getFirestore = function () {
+    if (!this.firestore) this.firestore = firebase.firestore(Firebase.getApp());
+    return this.firestore;
+  };
+
+  static getAuth = function () {
+    if (!this.auth) this.auth = firebase.auth();
+    return this.auth;
+  };
+}
+
+Firebase.getApp();
+export const auth = Firebase.getAuth();
+export const firestore = Firebase.getFirestore();

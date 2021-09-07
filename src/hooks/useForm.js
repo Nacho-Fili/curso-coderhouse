@@ -1,8 +1,10 @@
 import {useState} from "react";
+import {useHistory} from "react-router";
 
-export default function useForm(fields) {
+export default function useForm(fields, redirectTo) {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (callback) => {
     setIsLoading(true);
@@ -17,6 +19,9 @@ export default function useForm(fields) {
       if (callback)
         callback().then(() => {
           setIsLoading(false);
+          if (redirectTo) {
+            history.push(redirectTo);
+          }
         });
       else setIsLoading(false);
     } else {

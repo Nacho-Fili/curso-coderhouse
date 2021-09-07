@@ -5,8 +5,15 @@ const mappingIdAndData = ({docs}) => docs.map(joinIdAndData);
 const resolveCategory = ({categoryId}) =>
   firestore.collection("/categories").doc(categoryId).get().then(joinIdAndData);
 
-const itemsService = {
-  fetchAll: () =>
+class ItemsService {
+  instance;
+
+  static getInstance = function () {
+    if (!this.instance) this.instance = new ItemsService();
+    return this.instance;
+  };
+
+  fetchAll = () =>
     firestore
       .collection("/items")
       .get()
@@ -22,18 +29,18 @@ const itemsService = {
       })
       .catch((err) => {
         throw err;
-      }),
+      });
 
-  fetchProduct: (id) =>
+  fetchProduct = (id) =>
     firestore
       .doc(`/items/${id}`)
       .get()
       .then(joinIdAndData)
       .catch((err) => {
         throw err;
-      }),
+      });
 
-  fetchByCategory: (id) =>
+  fetchByCategory = (id) =>
     firestore
       .collection("/items")
       .where("categoryId", "==", id)
@@ -50,16 +57,16 @@ const itemsService = {
       })
       .catch((err) => {
         throw err;
-      }),
+      });
 
-  fetchCategories: () =>
+  fetchCategories = () =>
     firestore
       .collection("/categories")
       .get()
       .then(mappingIdAndData)
       .catch((err) => {
         throw err;
-      }),
-};
+      });
+}
 
-export default itemsService;
+export default ItemsService.getInstance();

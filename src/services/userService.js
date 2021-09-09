@@ -1,4 +1,4 @@
-import {auth, firestore} from "../config/firebase";
+import {auth, FieldValue, firestore} from "../config/firebase";
 
 class UserService {
   instance;
@@ -35,7 +35,21 @@ class UserService {
         }),
     );
 
-  deleteAccount = () => auth.currentUser.delete();
+  deleteAccount = () =>
+    firestore
+      .doc(`/users/${auth.currentUser.uid}`)
+      .then((doc) => doc.delete)
+      .then(() => auth.currentUser.delete);
+
+  addBuy = (buy) =>
+    firestore
+      .doc(`/users/${auth.currentUser.uid}`)
+      .set({buys: FieldValue.arrayUnion(buy)}, {merge: true});
+
+  addAddres = (address) =>
+    firestore
+      .doc(`/users/${auth.currentUser.uid}`)
+      .set({addresses: FieldValue.arrayUnion(address)}, {merge: true});
 
   logout = () => auth.signOut();
 }

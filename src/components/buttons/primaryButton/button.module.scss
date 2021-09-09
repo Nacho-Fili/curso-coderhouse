@@ -10,12 +10,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 35, 1);
+    background-color: $category-color;
     border-radius: 30px;
     padding: 0 10px;
     font-weight: bold;
     color: $background;
-    border: 2px solid $main-color;
+    border: 2px solid $category-color;
     font-size: large;
     outline: none;
 }

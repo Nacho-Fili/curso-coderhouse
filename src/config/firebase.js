@@ -35,3 +35,4 @@ class Firebase {
 Firebase.getApp();
 export const auth = Firebase.getAuth();
 export const firestore = Firebase.getFirestore();
+export const FieldValue = firebase.firestore.FieldValue;

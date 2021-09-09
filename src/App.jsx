@@ -9,6 +9,7 @@ import "./App.scss";
 import LoginForm from "./components/user/LoginForm";
 import SignupForm from "./components/user/SignupForm";
 import Profile from "./components/user/Profile";
+import Checkout from "./components/checkout/Checkout";
 
 const App = () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/login/:from" component={LoginForm} exact />
             <Route path="/signup" component={SignupForm} exact />
             <Route path="/profile" component={Profile} exact />
+            <Route path="/checkout" component={Checkout} exact />
           </Switch>
         </div>
       </UserContextProvider>

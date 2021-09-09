@@ -8,12 +8,13 @@ import UserContext from "../../context/UserContext";
 
 export default function LoginForm() {
   const {login} = useContext(UserContext);
+
   const {from} = useParams();
+  const redirectTo = from || "";
+
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const errorMessage = "Email or password incorrect";
-
-  const redirectTo = from || "";
 
   const {err, isLoading, handleSubmit} = useForm(
     [

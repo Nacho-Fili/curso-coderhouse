@@ -1,8 +1,12 @@
 import styles from "./button.module.scss";
 
-export default function PrimaryButton({children, className, onClick}) {
+export default function SecondaryButton({children, className, onClick, type = "submit"}) {
   return (
-    <button className={styles.button + " " + className + " clickable"} onClick={onClick}>
+    <button
+      type={type}
+      className={styles.button + " " + (className || "") + " clickable"}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

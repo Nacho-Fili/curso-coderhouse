@@ -1,8 +1,9 @@
-$main-color: #000032;
+$main-color: #333333;
 $detail-color: #DA00FF;
 $background: whitesmoke;
 $category-color: #0055FF;
+$auxiliar-color: #000052;
 
 @function main-color-opacity($opacity){
-    @return rgba(0, 0, 50, $opacity);
+    @return rgba($main-color, $opacity);
 }

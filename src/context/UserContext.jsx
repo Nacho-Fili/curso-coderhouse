@@ -13,8 +13,11 @@ export function UserContextProvider({children}) {
 
   const deleteAccount = () => userService.deleteAccount(userLogged).then(() => setUserLogged(null));
 
+  const addAddress = (address) =>
+    setUserLogged({...userLogged, addresses: [...userLogged.addresses, address]});
+
   return (
-    <UserContext.Provider value={{userLogged, login, logout, deleteAccount}}>
+    <UserContext.Provider value={{userLogged, login, logout, deleteAccount, addAddress}}>
       {children}
     </UserContext.Provider>
   );

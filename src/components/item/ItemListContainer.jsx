@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import SearchContext from "../../context/SearchContext";
 import itemsService from "../../services/itemsService";
 import IsLoading from "../loading/IsLoading";
 import styles from "./item.module.scss";
@@ -9,14 +10,18 @@ import ItemList from "./ItemList";
 export default function ItemListContainer() {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("pending");
-  const {id} = useParams();
+  const {id, query} = useParams();
+  const {itemsSearched} = useContext(SearchContext);
 
-  const getFetchFucntion = (bool) =>
-    bool ? itemsService.fetchByCategory : (id) => itemsService.fetchAll();
+  const getFetchFucntion = () => {
+    if (id) return itemsService.fetchByCategory;
+    if (query) return (id) => itemsService.fetchByIds(itemsSearched);
+    else return (id) => itemsService.fetchAll();
+  };
 
   useEffect(() => {
     setStatus("pending");
-    const fetchFunction = getFetchFucntion(Boolean(id));
+    const fetchFunction = getFetchFucntion();
 
     fetchFunction(id)
       .then((fetchedItems) => {
@@ -26,7 +31,7 @@ export default function ItemListContainer() {
       .catch((err) => {
         throw err;
       });
-  }, [id]);
+  }, [id, query]);
 
   if (status === "pending")
     return (

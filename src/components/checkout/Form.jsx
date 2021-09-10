@@ -74,10 +74,10 @@ export default function Form({onSuccessBuy}) {
           type={field.type}
         />
       ))}
+      <PrimaryButton>submit</PrimaryButton>
       <SecondaryButton type="button" onClick={changeAddress}>
         change address
       </SecondaryButton>
-      <PrimaryButton>submit</PrimaryButton>
       {Boolean(err) && err.map((error) => <p key={error}>{error}</p>)}
       {Boolean(stockError) && stockError}
     </form>

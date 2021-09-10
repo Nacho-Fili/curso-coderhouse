@@ -5,6 +5,8 @@ import isEmail from "validator/lib/isEmail";
 import isStrongPassword from "validator/lib/isStrongPassword";
 import Loader from "../loading/IsLoading";
 import UserContext from "../../context/UserContext";
+import styles from "./form.module.scss";
+import PrimaryButton from "../buttons/primaryButton/PrimaryButton";
 
 export default function LoginForm() {
   const {login} = useContext(UserContext);
@@ -38,21 +40,26 @@ export default function LoginForm() {
   };
 
   return isLoading ? (
-    <Loader />
+    <div className={styles.loaderContainer}>
+      <Loader />
+    </div>
   ) : (
-    <>
+    <div className={styles.formContainer}>
       <form
+        className={styles.form}
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(() => login(email, password));
         }}
       >
-        <input onChange={handleChange} type="text" name="email" />
-        <input onChange={handleChange} type="password" name="password" />
-        <button>Login</button>
+        <input className={styles.input} onChange={handleChange} type="text" name="email" />
+        <input className={styles.input} onChange={handleChange} type="password" name="password" />
+        <PrimaryButton className={styles.button}>Log In</PrimaryButton>
       </form>
       {err.length > 0 && err.map((error) => <p key={error}>{error}</p>)}
-      <Link to="/signup">Register</Link>
-    </>
+      <Link className={styles.link} to="/signup">
+        Register
+      </Link>
+    </div>
   );
 }

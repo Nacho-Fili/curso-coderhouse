@@ -3,6 +3,7 @@ import styles from "./itemDetails.module.scss";
 import ItemCount from "./ItemCount";
 import {Link} from "react-router-dom";
 import CartContext from "../../context/CartContext";
+import SecondaryButton from "../buttons/secondaryButton/SecondaryButton";
 
 export default function ItemDetails({item}) {
   const [showCounter, setShowCounter] = useState(true);
@@ -26,7 +27,7 @@ export default function ItemDetails({item}) {
         {showCounter && <ItemCount initial={1} stock={item.stock} onAdd={handleOnAdd} />}
         {!showCounter && (
           <Link to="/cart">
-            <button className={"clickable " + styles.secondaryButton}>Finalizar compra</button>
+            <SecondaryButton>Finalizar compra</SecondaryButton>
           </Link>
         )}
       </div>

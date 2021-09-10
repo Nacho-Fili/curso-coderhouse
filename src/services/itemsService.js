@@ -31,6 +31,16 @@ class ItemsService {
         throw err;
       });
 
+  fetchByIds = async (items) => {
+    const itemsArray = [];
+    for (let i = 0; i < items.length; i++) {
+      const category = await resolveCategory(items[i]);
+      const item = await firestore.doc(`/items/${items[i].ref}`).get().then(joinIdAndData);
+      itemsArray.push({...item, category});
+    }
+    return itemsArray;
+  };
+
   fetchProduct = (id) =>
     firestore
       .doc(`/items/${id}`)

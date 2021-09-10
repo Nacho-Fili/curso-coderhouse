@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import Form from "./Form";
 import styles from "./checkout.module.scss";
-import {useContext} from "react/cjs/react.development";
 import {Redirect} from "react-router";
 import CartContext from "../../context/CartContext";
 import UserContext from "../../context/UserContext";

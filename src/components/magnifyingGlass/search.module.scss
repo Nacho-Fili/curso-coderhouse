@@ -1,0 +1,32 @@
+@import "../../theme";
+$height: 3vh;
+
+@mixin buttonStyle{
+    border: 2px solid $category-color;
+    background-color: transparent;
+    margin: 0 5px;
+    padding-inline: 5px;
+    border-radius: 15px;
+    height: $height;
+    box-sizing: border-box;
+    transition: background-color 0.5s
+}
+
+.search, .close{
+    @include buttonStyle;
+}
+
+.search:hover, .close:hover{
+    background-color: $main-color;  
+    color: $background
+}
+
+.query{
+    background-color: transparent;
+    border: 2px solid $category-color;
+    border-radius: 15px;
+    height: $height;
+    box-sizing: border-box;
+    outline: none;
+    padding-inline-start: 10px;
+}

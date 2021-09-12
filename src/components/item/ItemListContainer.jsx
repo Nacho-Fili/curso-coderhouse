@@ -1,29 +1,31 @@
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import SearchContext from "../../context/SearchContext";
 import itemsService from "../../services/itemsService";
 import IsLoading from "../loading/IsLoading";
 import styles from "./item.module.scss";
 import ItemList from "./ItemList";
 
 // TODO: Implementar la posibilidad de error
-export default function ItemListContainer() {
+export default function ItemListContainer({searchService}) {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("pending");
   const {id, query} = useParams();
-  const {itemsSearched} = useContext(SearchContext);
 
   const getFetchFucntion = () => {
-    if (id) return itemsService.fetchByCategory;
-    if (query) return (id) => itemsService.fetchByIds(itemsSearched);
-    else return (id) => itemsService.fetchAll();
+    if (id) return () => itemsService.fetchByCategory(id);
+    if (query)
+      return () => {
+        const itemsSearched = searchService.searchByString(query);
+        return itemsService.fetchByIds(itemsSearched);
+      };
+    else return () => itemsService.fetchAll();
   };
 
   useEffect(() => {
     setStatus("pending");
     const fetchFunction = getFetchFucntion();
 
-    fetchFunction(id)
+    fetchFunction()
       .then((fetchedItems) => {
         setItems(fetchedItems);
         setStatus("success");

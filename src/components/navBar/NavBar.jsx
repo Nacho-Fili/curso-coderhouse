@@ -7,10 +7,9 @@ import Brand from "./Brand";
 import UserWidget from "../user/UserWidget";
 import MagnifyingGlassWidget from "../magnifyingGlass/MagnifyingGlassWidget";
 
-const NavBar = ({searchService}) => (
+const NavBar = () => (
   <header>
     <nav className={styles.navBar}>
-      {/* TODO: Cambiar categorías y items en firebase */}
       <CategoryListContainer />
       <Link className={styles.brand} to="/">
         <Brand />
@@ -18,7 +17,7 @@ const NavBar = ({searchService}) => (
       <div className={styles.widgetContainer}>
         <CartWidget />
         <UserWidget />
-        <MagnifyingGlassWidget searchService={searchService} />
+        <MagnifyingGlassWidget />
       </div>
     </nav>
   </header>

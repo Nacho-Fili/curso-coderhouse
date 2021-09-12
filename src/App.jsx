@@ -6,7 +6,6 @@ import Cart from "./components/cart/Cart";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {CartContextProvider} from "./context/CartContext";
 import {UserContextProvider} from "./context/UserContext";
-import {SearchContextProvider} from "./context/SearchContext";
 import LoginForm from "./components/user/LoginForm";
 import SignupForm from "./components/user/SignupForm";
 import Profile from "./components/user/Profile";
@@ -26,23 +25,23 @@ const App = () => {
     <BrowserRouter>
       <CartContextProvider>
         <UserContextProvider>
-          <SearchContextProvider>
-            <NavBar searchService={searchService} />
-            <div className="main">
-              <Switch>
-                <Route path="/" component={ItemListContainer} exact />
-                <Route path="/search/:query" component={ItemListContainer} exact />
-                <Route path="/category/:id" component={ItemListContainer} exact />
-                <Route path="/item/:id" component={ItemDetailsContainer} exact />
-                <Route path="/cart" component={Cart} exact />
-                <Route path="/login" component={LoginForm} exact />
-                <Route path="/login/:from" component={LoginForm} exact />
-                <Route path="/signup" component={SignupForm} exact />
-                <Route path="/profile" component={Profile} exact />
-                <Route path="/checkout" component={Checkout} exact />
-              </Switch>
-            </div>
-          </SearchContextProvider>
+          <NavBar />
+          <div className="main">
+            <Switch>
+              <Route path="/" component={ItemListContainer} exact />
+              <Route path="/search/:query" exact>
+                <ItemListContainer searchService={searchService} />
+              </Route>
+              <Route path="/category/:id" component={ItemListContainer} exact />
+              <Route path="/item/:id" component={ItemDetailsContainer} exact />
+              <Route path="/cart" component={Cart} exact />
+              <Route path="/login" component={LoginForm} exact />
+              <Route path="/login/:from" component={LoginForm} exact />
+              <Route path="/signup" component={SignupForm} exact />
+              <Route path="/profile" component={Profile} exact />
+              <Route path="/checkout" component={Checkout} exact />
+            </Switch>
+          </div>
         </UserContextProvider>
       </CartContextProvider>
       <div style={{display: "none"}}>

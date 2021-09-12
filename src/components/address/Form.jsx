@@ -7,8 +7,9 @@ import Loader from "../loading/IsLoading";
 import styles from "./address.module.scss";
 import SecondaryButton from "../buttons/secondaryButton/SecondaryButton";
 import UserContext from "../../context/UserContext";
+import PrimaryButton from "../buttons/primaryButton/PrimaryButton";
 
-export default function Form({onAdd}) {
+export default function Form({onAdd, onClose}) {
   const {fields, address, zip, handleChange} = useFields();
   const {handleSubmit, err, isLoading} = useForm(fields);
   const {addAddress} = useContext(UserContext);
@@ -36,9 +37,13 @@ export default function Form({onAdd}) {
             name={field.name}
             key={field.name}
             onChange={handleChange}
+            className={styles.input}
           />
         ))}
-        <SecondaryButton>add</SecondaryButton>
+        <PrimaryButton className={styles.addButton}>add</PrimaryButton>
+        <SecondaryButton className={styles.closeButton} onClick={onClose} type="button">
+          close
+        </SecondaryButton>
       </form>
       {Boolean(err.length) && err.map((error) => <p key={error}>{error}</p>)}
     </>

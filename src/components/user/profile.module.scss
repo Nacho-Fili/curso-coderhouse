@@ -1,0 +1,31 @@
+.mainContainer{
+    height: 100%;
+    width: 100%;
+    padding-block: 50px;
+    .title{
+        margin: 0;
+        padding-inline-start: 40px;
+        margin-top: 0px;
+    }
+    
+    .buysContainer,
+    .addressesContainer{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding-inline: 75px;
+        padding-block: 10px 50px;
+    }
+    
+    .showForm{
+        width: 40%;
+    }
+
+    .delete{
+        background-color: #CC0000;
+        border: 2px solid #CC0000;
+        margin-left: 75px;
+        width: 30%;
+        box-sizing: border-box;
+    }
+}

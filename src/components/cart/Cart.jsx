@@ -13,10 +13,21 @@ export default function Cart() {
 
   if (items.length === 0 && !successBuy)
     return (
-      <>
-        <p>No hay items en tu carrito!</p>
-        <Link to="/">Volver a inicio</Link>
-      </>
+      <div
+        style={{
+          height: "83vh",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <p style={{margin: 0}}>No hay items en tu carrito!</p>
+        <Link style={{color: "blue"}} to="/">
+          Volver a inicio
+        </Link>
+      </div>
     );
 
   return (

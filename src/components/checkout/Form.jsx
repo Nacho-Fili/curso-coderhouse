@@ -32,6 +32,7 @@ export default function Form({onSuccessBuy}) {
       quantity: item.quantity,
       title: item.title,
       price: item.price,
+      image: item.image,
     })),
     date: new Date(),
     total: finalPrice,

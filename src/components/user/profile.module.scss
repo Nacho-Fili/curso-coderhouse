@@ -11,12 +11,23 @@
     .buysContainer,
     .addressesContainer{
         display: flex;
-        flex-direction: column;
         width: 50%;
         padding-inline: 75px;
         padding-block: 10px 50px;
     }
-    
+
+    .buysContainer{
+        gap: 50px;
+        .buyContainer{
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+        }
+    }
+
+    .addressesContainer{
+        flex-direction: column;
+    }
+
     .showForm{
         width: 40%;
     }

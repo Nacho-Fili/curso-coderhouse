@@ -25,13 +25,12 @@ export default function Profile() {
         {userLogged.addresses.map((address) => (
           <Address key={address.address} address={address} />
         ))}
-        {showAddresForm && (
+        {showAddresForm ? (
           <AddressForm
             onAdd={() => setShowAddresForm(false)}
             onClose={() => setShowAddresForm(false)}
           />
-        )}
-        {!showAddresForm && (
+        ) : (
           <PrimaryButton className={styles.showForm} onClick={() => setShowAddresForm(true)}>
             Add address
           </PrimaryButton>

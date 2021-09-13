@@ -101,6 +101,19 @@
     }
 }
 
-
-
-
+.quantityContainer{
+    position: relative;
+    top: 15px;
+    right: 10px;
+    background-color: $main-color;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    .quantity{
+        color: $background;
+        font-size: 14px;
+    }
+}

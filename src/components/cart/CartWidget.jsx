@@ -2,12 +2,12 @@ import cartContext from "../../context/CartContext";
 import {useContext, useState} from "react";
 import {BiCartAlt} from "react-icons/bi";
 import CartModal from "./CartModal";
+import styles from "./cart.module.scss";
 
 export default function CartWidget() {
   const {finalQuantity} = useContext(cartContext);
   const [showContent, setShowContent] = useState(false);
 
-  // TODO: Mejorar estilos del contador del widget
   return (
     <div
       style={{display: "flex", alignItems: "center"}}
@@ -16,7 +16,11 @@ export default function CartWidget() {
     >
       <BiCartAlt size={25} style={{margin: "18px 0"}} />
 
-      {!!finalQuantity && <p>{finalQuantity}</p>}
+      {!!finalQuantity && (
+        <div className={styles.quantityContainer}>
+          <p className={styles.quantity}>{finalQuantity}</p>
+        </div>
+      )}
       <CartModal show={showContent} />
     </div>
   );

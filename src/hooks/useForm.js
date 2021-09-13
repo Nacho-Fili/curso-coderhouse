@@ -17,12 +17,18 @@ export default function useForm(fields, redirectTo) {
 
     if (errors.length === 0) {
       if (callback)
-        callback().then(() => {
-          setIsLoading(false);
-          if (redirectTo) {
-            history.push(redirectTo);
-          }
-        });
+        callback()
+          .then(() => {
+            setIsLoading(false);
+            if (redirectTo) {
+              history.push(redirectTo);
+            }
+          })
+          .catch((errorInCb) => {
+            setErr([...err, errorInCb.message]);
+            setIsLoading(false);
+            throw err;
+          });
       else setIsLoading(false);
     } else {
       setErr(errors);

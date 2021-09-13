@@ -65,6 +65,7 @@ const useFields = () => {
     name,
     phone,
     email,
+    password,
     handleChange,
   };
 };

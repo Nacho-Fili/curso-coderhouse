@@ -2,13 +2,14 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import itemsService from "../../services/itemsService";
 import IsLoading from "../loading/IsLoading";
+import Oops from "../screens/Oops";
 import styles from "./item.module.scss";
 import ItemList from "./ItemList";
 
-// TODO: Implementar la posibilidad de error
 export default function ItemListContainer({searchService}) {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("pending");
+  const [error, setError] = useState("");
   const {id, query} = useParams();
 
   const getFetchFucntion = () => {
@@ -31,6 +32,7 @@ export default function ItemListContainer({searchService}) {
         setStatus("success");
       })
       .catch((err) => {
+        setError("Ha ocurrido un error inesperado");
         throw err;
       });
   }, [id, query]);
@@ -42,7 +44,9 @@ export default function ItemListContainer({searchService}) {
       </div>
     );
 
-  return (
+  return error ? (
+    <Oops message={error} />
+  ) : (
     <div className={styles.itemListContainer}>
       <ItemList items={items} />
     </div>

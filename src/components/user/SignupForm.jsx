@@ -1,14 +1,13 @@
 import useForm from "../../hooks/useForm";
 import IsLoading from "../loading/IsLoading";
 import userService from "../../services/userService";
-import {useHistory, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import styles from "./form.module.scss";
 import PrimaryButton from "../buttons/primaryButton/PrimaryButton";
 import useFields from "./signupFields";
 import Input from "../input/Input";
 
 export default function SignupForm() {
-  const history = useHistory();
   const {name, password, email, phone, fields, handleChange} = useFields();
 
   const {err, isLoading, handleSubmit} = useForm(fields, "/login");
@@ -20,9 +19,7 @@ export default function SignupForm() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(() =>
-            userService.createUser(name, password, email, phone).then(() => history.push("/")),
-          );
+          handleSubmit(() => userService.createUser(name, password, email, phone));
         }}
         className={styles.form}
       >

@@ -15,9 +15,12 @@ export default function CategoryListContainer() {
         setStatus("success");
       })
       .catch((err) => {
+        setStatus("error");
         throw err;
       });
   }, []);
+
+  if (status === "error") return <p>error</p>;
 
   return (
     <div className={styles.categoryListContainer}>

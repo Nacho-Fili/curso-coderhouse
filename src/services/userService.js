@@ -8,20 +8,22 @@ class UserService {
     return this.instance;
   };
 
-  createUser = (name, password, email, phone) =>
-    auth
+  createUser = (name, password, email, phone) => {
+    return auth
       .createUserWithEmailAndPassword(email, password)
       .then(({user}) =>
         firestore.collection("users").doc(user.uid).set({
           phone: phone,
           name: name,
           addresses: [],
+          buys: [],
         }),
       )
 
       .catch((err) => {
         throw err;
       });
+  };
 
   login = (email, password) =>
     auth.signInWithEmailAndPassword(email, password).then(({user}) =>

@@ -13,6 +13,7 @@ import Checkout from "./components/checkout/Checkout";
 import itemsService from "./services/itemsService";
 import SearchService from "./services/searchService";
 import "./App.scss";
+import Oops from "./components/screens/Oops";
 
 const App = () => {
   const [searchService, setSearchService] = useState(null);
@@ -40,6 +41,9 @@ const App = () => {
               <Route path="/signup" component={SignupForm} exact />
               <Route path="/profile" component={Profile} exact />
               <Route path="/checkout" component={Checkout} exact />
+              <Route path="*">
+                <Oops message="Nothing to see here (404)" />
+              </Route>
             </Switch>
           </div>
         </UserContextProvider>

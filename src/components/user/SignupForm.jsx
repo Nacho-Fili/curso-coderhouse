@@ -13,7 +13,17 @@ export default function SignupForm() {
   const {err, isLoading, handleSubmit} = useForm(fields, "/login");
 
   return isLoading ? (
-    <IsLoading />
+    <div
+      style={{
+        width: "100%",
+        minHeight: "83vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <IsLoading />
+    </div>
   ) : (
     <div className={styles.formContainer}>
       <form

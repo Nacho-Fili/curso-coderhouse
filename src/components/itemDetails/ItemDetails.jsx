@@ -27,7 +27,7 @@ export default function ItemDetails({item}) {
         {showCounter && <ItemCount initial={1} stock={item.stock} onAdd={handleOnAdd} />}
         {!showCounter && (
           <Link to="/cart">
-            <SecondaryButton>Finalizar compra</SecondaryButton>
+            <SecondaryButton className={styles.goToButton}>Go to cart</SecondaryButton>
           </Link>
         )}
       </div>

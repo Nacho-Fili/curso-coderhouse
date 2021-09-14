@@ -8,11 +8,11 @@ import salesService from "../../services/salesService";
 import useFields from "./fields";
 import PrimaryButton from "../buttons/primaryButton/PrimaryButton";
 import SecondaryButton from "../buttons/secondaryButton/SecondaryButton";
-import userService from "../../services/userService";
+import UserContext from "../../context/UserContext";
 
 export default function Form({onSuccessBuy}) {
   const {items, finalPrice, clear} = useContext(CartContext);
-
+  const {addBuy} = useContext(UserContext);
   const {fields, name, email, phone, address, zip, handleChange, changeAddress} = useFields();
 
   const [id, setId] = useState();
@@ -48,7 +48,7 @@ export default function Form({onSuccessBuy}) {
           onSuccessBuy();
           clear();
           setId(id);
-          userService.addBuy({id, ...transaction});
+          addBuy({id, ...transaction});
           return id;
         })
         .catch((err) => {

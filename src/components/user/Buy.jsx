@@ -2,7 +2,7 @@ import styles from "./profile.module.scss";
 
 export default function Buy({buy}) {
   const printDate = (date) => {
-    const dateString = String(date.toDate());
+    const dateString = date.toDate ? String(date.toDate()) : String(date);
     const gmtIndex = dateString.search(/gmt/i);
     return dateString.substring(0, gmtIndex);
   };

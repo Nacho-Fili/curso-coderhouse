@@ -37,11 +37,11 @@ class UserService {
         }),
     );
 
-  deleteAccount = () =>
+  deleteAccount = (userLogged) =>
     firestore
-      .doc(`/users/${auth.currentUser.uid}`)
-      .then((doc) => doc.delete)
-      .then(() => auth.currentUser.delete);
+      .doc(`/users/${userLogged.id}`)
+      .delete()
+      .then(() => auth.currentUser.delete());
 
   addBuy = (buy) =>
     firestore

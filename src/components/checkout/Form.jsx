@@ -73,6 +73,7 @@ export default function Form({onSuccessBuy}) {
           name={field.name}
           onChange={handleChange}
           type={field.type}
+          className={styles.input}
         />
       ))}
       <PrimaryButton>submit</PrimaryButton>

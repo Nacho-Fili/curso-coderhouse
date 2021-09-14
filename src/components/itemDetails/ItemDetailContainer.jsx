@@ -21,7 +21,20 @@ export default function ItemDetailContainer() {
       });
   }, [id]);
 
-  if (status === "pending") return <IsLoading />;
+  if (status === "pending")
+    return (
+      <div
+        style={{
+          display: "flex",
+          minHeight: "83vh",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <IsLoading />
+      </div>
+    );
 
   return <ItemDetails item={item} />;
 }

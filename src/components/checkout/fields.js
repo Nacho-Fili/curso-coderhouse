@@ -11,11 +11,16 @@ const useFields = () => {
   const [name, setName] = useState(userLogged ? userLogged.name : "");
   const [email, setEmail] = useState(userLogged ? userLogged.email : "");
   const [phone, setPhone] = useState(userLogged ? userLogged.phone : "");
-  const [address, setAddress] = useState(userLogged ? userLogged.addresses[index].address : "");
-  const [zip, setZip] = useState(userLogged ? userLogged.addresses[index].zip : "");
+  const [address, setAddress] = useState(
+    userLogged.addresses.length > 0 ? userLogged.addresses[index].address : "",
+  );
+  const [zip, setZip] = useState(
+    userLogged.addresses.length > 0 ? userLogged.addresses[index].zip : "",
+  );
 
   const changeAddress = () => {
     if (!userLogged) return;
+    if (userLogged.addresses.length === 0) return;
 
     setIndex(index < userLogged.addresses.length - 1 ? index + 1 : 0);
 

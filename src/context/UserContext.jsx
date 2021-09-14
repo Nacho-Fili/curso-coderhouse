@@ -8,7 +8,6 @@ export function UserContextProvider({children}) {
 
   const login = (email, password) =>
     userService.login(email, password).then((user) => {
-      console.log(user);
       return setUserLogged(user);
     });
 

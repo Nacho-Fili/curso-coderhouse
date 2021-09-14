@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import useForm from "../../hooks/useForm";
-import userService from "../../services/userService";
 import Input from "../input/Input";
 import useFields from "./fields";
 import Loader from "../loading/IsLoading";
@@ -23,8 +22,7 @@ export default function Form({onAdd, onClose}) {
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(() =>
-            userService.addAddres({address, zip}).then(() => {
-              addAddress({address, zip});
+            addAddress({address, zip}).then(() => {
               return onAdd();
             }),
           );

@@ -17,7 +17,9 @@ export function UserContextProvider({children}) {
   const deleteAccount = () => userService.deleteAccount(userLogged).then(() => setUserLogged(null));
 
   const addAddress = (address) =>
-    setUserLogged({...userLogged, addresses: [...userLogged.addresses, address]});
+    userService
+      .addAddres(address)
+      .then(() => setUserLogged({...userLogged, addresses: [...userLogged.addresses, address]}));
 
   const addBuy = (buy) => {
     userService

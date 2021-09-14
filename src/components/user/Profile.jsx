@@ -6,10 +6,27 @@ import AddressForm from "../address/Form";
 import Buy from "./Buy";
 import Address from "../address/Address";
 import styles from "./profile.module.scss";
+import Loader from "../loading/IsLoading";
 
 export default function Profile() {
   const {userLogged, deleteAccount} = useContext(UserContext);
   const [showAddresForm, setShowAddresForm] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoading)
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          minHeight: "83vh",
+        }}
+      >
+        <Loader />
+      </div>
+    );
 
   return userLogged ? (
     <div className={styles.mainContainer}>
@@ -38,7 +55,13 @@ export default function Profile() {
       </div>
 
       <h1 className={styles.title}>Delete account</h1>
-      <PrimaryButton className={styles.delete} onClick={() => deleteAccount()}>
+      <PrimaryButton
+        className={styles.delete}
+        onClick={() => {
+          setIsLoading(true);
+          deleteAccount().finally(() => setIsLoading(false));
+        }}
+      >
         Delete Account
       </PrimaryButton>
     </div>

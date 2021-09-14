@@ -28,6 +28,14 @@ export default function ItemListContainer({searchService}) {
 
     fetchFunction()
       .then((fetchedItems) => {
+        setError(
+          fetchedItems.length === 0
+            ? `There is nothing to see here. ${query ? "The search didn't return results" : ""} ${
+                id ? "The category is empty" : ""
+              }`
+            : "",
+        );
+
         setItems(fetchedItems);
         setStatus("success");
       })

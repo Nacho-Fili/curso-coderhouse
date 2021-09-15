@@ -45,7 +45,9 @@ class ItemsService {
     firestore
       .doc(`/items/${id}`)
       .get()
-      .then(joinIdAndData)
+      .then((doc) => {
+        return doc.data() ? joinIdAndData(doc) : undefined;
+      })
       .catch((err) => {
         throw err;
       });

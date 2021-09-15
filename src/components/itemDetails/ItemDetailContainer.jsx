@@ -3,16 +3,20 @@ import {useParams} from "react-router-dom";
 import itemsService from "../../services/itemsService";
 import IsLoading from "../loading/IsLoading";
 import ItemDetails from "./ItemDetails";
+import Oops from "../screens/Oops";
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState({});
   const [status, setStatus] = useState("pending");
+  const [error, setError] = useState("");
   const {id} = useParams();
 
   useEffect(() => {
     itemsService
       .fetchProduct(id)
       .then((fetchedItem) => {
+        console.log(fetchedItem);
+        if (!fetchedItem) setError("There is nothing to see here. Item not found (404)");
         setItem(fetchedItem);
         setStatus("success");
       })
@@ -36,5 +40,5 @@ export default function ItemDetailContainer() {
       </div>
     );
 
-  return <ItemDetails item={item} />;
+  return error ? <Oops message={error} /> : <ItemDetails item={item} />;
 }

@@ -15,7 +15,6 @@ export default function ItemDetailContainer() {
     itemsService
       .fetchProduct(id)
       .then((fetchedItem) => {
-        console.log(fetchedItem);
         if (!fetchedItem) setError("There is nothing to see here. Item not found (404)");
         setItem(fetchedItem);
         setStatus("success");
